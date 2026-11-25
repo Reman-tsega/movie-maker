@@ -22,6 +22,9 @@ woven tibeb shawl and a scarf in the flag colours makes a familiar fable feel li
   effort, not about shaming the rabbit.
 - **Narration sets the timing:** shots stretch to fit each spoken line.
 
+## Language review (before any audio was generated)
+- s05: "ላረፍ ብላ" corrected to "ልረፍ ብላ" (native-speaker read-through of all 10 lines).
+
 ## User test 1: radio cut (narration on black)
 _To do: at least 3 people from the audience (children with a parent, or parents). Who, where,
 what they said, what changed._

@@ -89,7 +89,7 @@
       "duration_s": 7, "characters": ["rabbit"],
       "image_prompt": "the rabbit curled up asleep in the cool shade under a large acacia tree beside the trail, eyes closed, peaceful",
       "motion": {"mode": "wan", "zoom": [1.0, 1.1], "pan": "center", "prompt": "the rabbit breathes slowly while sleeping, leaves sway gently, fixed camera"},
-      "narration": "ጥንቸል በአንድ ትልቅ ዛፍ ጥላ ስር ትንሽ ላረፍ ብላ ተኛች፤ ነገር ግን ጥልቅ እንቅልፍ ወሰዳት።",
+      "narration": "ጥንቸል በአንድ ትልቅ ዛፍ ጥላ ስር ትንሽ ልረፍ ብላ ተኛች፤ ነገር ግን ጥልቅ እንቅልፍ ወሰዳት።",
       "subtitle_en": "She lay down under a big tree for a short rest, but she fell fast asleep.",
       "seed": 105
     },
