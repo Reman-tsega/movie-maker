@@ -46,7 +46,8 @@ def main() -> int:
         dur = narr.get(sid, {}).get("duration_s", 0)
         words = len(next(s["narration"] for s in sb["shots"] if s["id"] == sid).split())
         flags = []
-        if any(l.lower() not in ("amharic", "am") for l in row["languages"]):
+        # the model labels the language inconsistently between runs: "Amharic", "am", "amh" (ISO 639-3)
+        if any(l.lower().split()[0].strip("()") not in ("amharic", "am", "amh") for l in row["languages"]):
             flags.append("non-Amharic speech")
         if words and dur / words > 1.2:
             flags.append(f"slow: {dur / words:.1f} s/word")

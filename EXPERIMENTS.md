@@ -74,3 +74,11 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
 - **Result:** it caught the spoken instruction (F4) that I had only suspected from durations.
   Now 10/10 lines are Amharic and match the script, apart from spelling variants (ጸ/ፀ).
 - **Decision:** `narration_check.py` runs after every narration change.
+
+## E10: Is the narration check itself reliable?
+- **Hypothesis:** the transcription check gives the same verdict on the same audio every run.
+- **Result:** the first run labelled the language "Amharic" (10/10 OK). The second labelled it
+  "amh" (ISO 639-3), and my exact-match check flagged all 10 as non-Amharic: a false alarm from
+  the checker, not the audio.
+- **Decision:** accept "Amharic", "am" or "amh", and ask for English language names in the prompt.
+  An LLM-based check needs its own tolerance for label variation.
