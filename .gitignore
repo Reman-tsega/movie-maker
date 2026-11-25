@@ -8,3 +8,5 @@ __pycache__/
 # scratch
 outputs/tmp/
 outputs/final/work/
+outputs/music/placeholder_*.wav
+outputs/final/radio_cut_*.mp4
