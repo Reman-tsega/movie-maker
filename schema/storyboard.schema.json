@@ -38,6 +38,7 @@
       "properties": {
         "text": {"type": "string"},
         "tts": {"type": "string"},
+        "tts_fallbacks": {"type": "array", "items": {"type": "string"}, "description": "Used when the main TTS model's daily free quota is spent"},
         "image": {"type": "string"},
         "video": {"type": "string"},
         "music": {"type": "string"}

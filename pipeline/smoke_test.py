@@ -61,7 +61,7 @@ def main() -> int:
     from keyframes import generate
     t0 = time.time()
     try:
-        img = generate(sb["models"]["image"], "a small grey-brown rabbit on a green hill, picture-book style", 7)
+        img = generate(sb["models"]["image"], "a small grey-brown rabbit on a green hill, picture-book style", 7)  # noqa
         (out / "image_test.jpg").write_bytes(img)
         log_call("smoke", sb["models"]["image"], seed=7, latency_s=time.time() - t0, output="outputs/smoke/image_test.jpg")
         print(f"cloudflare image OK in {time.time() - t0:.1f}s -> outputs/smoke/image_test.jpg")

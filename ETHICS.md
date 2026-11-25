@@ -16,7 +16,8 @@
 | Component | Licence / terms | Use here |
 |---|---|---|
 | Gemini TTS (Google AI Studio free tier) | Gemini API Terms; free-tier inputs may be used to improve Google products | Narration; only the story text is sent, no private family data |
-| FLUX.1 [schnell] (Black Forest Labs) via Cloudflare Workers AI | Apache 2.0 | Keyframes |
+| FLUX.2 [klein] 4B (Black Forest Labs) via Cloudflare Workers AI | Apache 2.0 (the 9B is non-commercial, so not used) | Keyframes and reference sheets |
+| FLUX.1 [schnell] via Cloudflare Workers AI | Apache 2.0 | Smoke test only (see EXPERIMENTS E3) |
 | Wan 2.2 TI2V-5B | Apache 2.0 | Moving shots |
 | ACE-Step 1.5 | MIT; outputs usable commercially | Score |
 | FFmpeg | LGPL/GPL | Assembly (a tool, not shipped) |
