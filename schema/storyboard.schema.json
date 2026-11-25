@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Reman-tsega/movie-maker/schema/storyboard.schema.json",
+  "title": "Heritage Short storyboard",
+  "description": "The contract between every pipeline stage. Each stage reads this file and writes to outputs/.",
+  "type": "object",
+  "required": ["title", "language", "audience", "intent", "style_block", "characters", "models", "voice", "music", "shots", "end_card"],
+  "additionalProperties": false,
+  "properties": {
+    "title": {"type": "string", "minLength": 1},
+    "logline": {"type": "string"},
+    "language": {"type": "string", "description": "BCP-47 code of the narration language, e.g. am-ET"},
+    "audience": {"type": "string", "minLength": 10},
+    "intent": {"type": "string", "minLength": 10},
+    "target_total_s": {
+      "type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2,
+      "description": "Allowed total length [min, max] in seconds, end card included"
+    },
+    "style_block": {"type": "string", "minLength": 10, "description": "Appended to every image prompt"},
+    "characters": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description"],
+        "additionalProperties": false,
+        "properties": {
+          "description": {"type": "string", "minLength": 10},
+          "reference_prompt": {"type": "string"},
+          "reference_seed": {"type": "integer"}
+        }
+      }
+    },
+    "models": {
+      "type": "object",
+      "required": ["tts", "image"],
+      "additionalProperties": false,
+      "properties": {
+        "text": {"type": "string"},
+        "tts": {"type": "string"},
+        "image": {"type": "string"},
+        "video": {"type": "string"},
+        "music": {"type": "string"}
+      }
+    },
+    "voice": {
+      "type": "object",
+      "required": ["name", "style_instruction"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {"type": "string"},
+        "style_instruction": {"type": "string"}
+      }
+    },
+    "music": {
+      "type": "object",
+      "required": ["cues"],
+      "additionalProperties": false,
+      "properties": {
+        "chosen_track": {"type": ["string", "null"], "description": "Path under outputs/music/ of the chosen score; null = placeholder"},
+        "caption": {"type": "string", "description": "ACE-Step caption for the score"},
+        "bpm": {"type": "integer", "minimum": 40, "maximum": 200},
+        "key": {"type": "string"},
+        "duck": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "threshold": {"type": "number"}, "ratio": {"type": "number"},
+            "attack_ms": {"type": "number"}, "release_ms": {"type": "number"},
+            "music_gain_db": {"type": "number"}
+          }
+        },
+        "cues": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "from_shot", "to_shot", "description"],
+            "additionalProperties": false,
+            "properties": {
+              "id": {"type": "string"},
+              "from_shot": {"type": "string"},
+              "to_shot": {"type": "string"},
+              "description": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["id", "beat", "reason", "shot_size", "duration_s", "characters", "image_prompt", "motion", "narration", "subtitle_en", "seed"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^s[0-9]{2}$"},
+          "beat": {"type": "string"},
+          "reason": {"type": "string", "minLength": 10, "description": "Why this shot exists"},
+          "shot_size": {"enum": ["extreme wide", "wide", "medium", "medium close-up", "close-up", "extreme close-up", "insert"]},
+          "duration_s": {"type": "number", "minimum": 3, "maximum": 15, "description": "Minimum on-screen time; stretched if narration is longer"},
+          "characters": {"type": "array", "items": {"type": "string"}},
+          "image_prompt": {"type": "string", "minLength": 10},
+          "motion": {
+            "type": "object",
+            "required": ["mode"],
+            "additionalProperties": false,
+            "properties": {
+              "mode": {"enum": ["kenburns", "wan"]},
+              "prompt": {"type": "string", "description": "Motion and camera only, for image-to-video"},
+              "zoom": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2},
+              "pan": {"enum": ["center", "left", "right", "up", "down"]}
+            }
+          },
+          "narration": {"type": "string", "minLength": 1},
+          "subtitle_en": {"type": "string", "minLength": 1},
+          "seed": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "end_card": {
+      "type": "object",
+      "required": ["lines", "duration_s"],
+      "additionalProperties": false,
+      "properties": {
+        "lines": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "duration_s": {"type": "number", "minimum": 2, "maximum": 6}
+      }
+    }
+  }
+}
