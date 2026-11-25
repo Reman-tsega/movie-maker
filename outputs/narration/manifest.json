@@ -30,9 +30,9 @@
     "duration_s": 7.92
   },
   "s07": {
-    "file": "outputs/narration/s07_e21c9c3825c2.wav",
-    "model": "gemini-2.5-flash-preview-tts",
-    "duration_s": 4.571
+    "file": "outputs/narration/s07_dd77fe68bb41.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 4.6
   },
   "s08": {
     "file": "outputs/narration/s08_0c46a73d14c6.wav",

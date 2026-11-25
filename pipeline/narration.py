@@ -142,15 +142,9 @@ def main() -> int:
         batch_generate(models, voice, style, missing, out_dir)   # falls back to per-line below
     for shot in sb["shots"]:
         # cache: prefer a file made by the primary model, else accept one made by a fallback
-        cached = None
-        for m in models:
-            h = input_hash(m, voice, style, shot["narration"])
-            p = out_dir / f"{shot['id']}_{h}.wav"
-            if p.exists():
-                cached, used = p, m
-                break
-        if cached:
-            path = cached
+        hit = cached_file(shot)
+        if hit:
+            path, used = hit
             log_call("narration", used, shot=shot["id"], cache_hit=True, output=str(path.relative_to(OUT.parent)))
             print(f"  {shot['id']}: cached ({used})")
         else:

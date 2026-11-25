@@ -33,30 +33,30 @@ without stopping and without hurrying,
 with steady, disciplined steps.
 
 8
-00:00:41,000 --> 00:00:45,571
+00:00:41,000 --> 00:00:45,600
 When the rabbit woke up, it was already
 very late.
 
 9
-00:00:46,570 --> 00:00:49,850
+00:00:46,600 --> 00:00:49,880
 The tortoise was already near the finish
 line.
 
 10
-00:00:51,570 --> 00:00:56,874
+00:00:51,600 --> 00:00:56,904
 The rabbit ran with all her strength,
 but she could not get there first. The
 
 11
-00:00:56,874 --> 00:00:58,410
+00:00:56,904 --> 00:00:58,440
 tortoise won the race.
 
 12
-00:00:59,410 --> 00:01:06,178
+00:00:59,440 --> 00:01:06,208
 Speed alone is not enough. Steady
 discipline, patience and focus lead to
 
 13
-00:01:06,178 --> 00:01:06,930
+00:01:06,208 --> 00:01:06,960
 success.
 

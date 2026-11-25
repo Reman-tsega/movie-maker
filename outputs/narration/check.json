@@ -3,90 +3,110 @@
     "id": "s01",
     "duration_s": 5.52,
     "languages": [
-      "Amharic"
+      "amh"
     ],
-    "transcript": "በአንድ ፀሐያማ ቀን ጥንቸልና ኤሊ የሩጫ ውድድር ጀመሩ።",
-    "flags": []
+    "transcript": "ሣንድ ፀሃያማ ቀን ጥንቸልና ኤሊ የሩጫ ውድድር ጀመሩሐ።",
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s02",
     "duration_s": 3.92,
     "languages": [
-      "Amharic"
+      "amh"
     ],
-    "transcript": "ውድድሩ ሲጀምር ጥንቸል በፍጥነት ሮጠች።",
-    "flags": []
+    "transcript": "ውድድሩ ሲጀመር ጥንቸል ሰፍጥነት ሮጠች።",
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s03",
     "duration_s": 4.52,
     "languages": [
-      "Amharic"
+      "amh"
     ],
     "transcript": "ወደኋላም ስትመለከት ኤሊ ገና በጣም ሩቅ ነበረች።",
-    "flags": []
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s04",
     "duration_s": 4.96,
     "languages": [
-      "Amharic"
+      "amh"
     ],
-    "transcript": "ጥንቸል በፍጥነቷ በመኩራራት ጊዜ አለኝ ብላ አሰበች።",
-    "flags": []
+    "transcript": "ጥንቸል በፍጥነቷ በመኩራራት ጊኔ አለኝ ብላ አሰበች።",
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s05",
     "duration_s": 7.68,
     "languages": [
-      "Amharic"
+      "amh"
     ],
-    "transcript": "ጥንቸል በአንድ ትልቅ ዛፍ ጥላ ስር ትንሽ ልረፍ ብላ ተኛች፤ ነገር ግን ጥልቅ እንቅልፍ ወሰዳት።",
-    "flags": []
+    "transcript": "ጥንቸል በአንድ ትልቅ ዘፍ ጥላ ስር ትንሽ ልረፍ ብላ ተኛች፣ ነገር ግን ጥልቅ እንቅልፍ ወሰዳት።",
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s06",
     "duration_s": 7.92,
     "languages": [
-      "Amharic"
+      "amh"
     ],
-    "transcript": "በዚህ ጊዜ ኤሊ ሳትቆም ሳትቸኩል እና ዲሲፕሊን ባለው እርምጃ ወደፊት መጓዟን ቀጠለች።",
-    "flags": []
+    "transcript": "በዚህ ጊኜ ኤሊ ሳትቆም፣ ሳትቸኩል፣ እና ዲሲፕሊን በላለው እርምጃ ወደፊት መጓዚን ቀጠለች።",
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s07",
-    "duration_s": 4.571,
+    "duration_s": 4.6,
     "languages": [
-      "Amharic"
+      "amh"
     ],
-    "transcript": "ጥንቸል ከእንቅልፍዋ ስትነቃ ጊዜው በጣም ረፍዶ ነበር።",
-    "flags": []
+    "transcript": "ጥንቸል ከእንቅልፋ ስትነቃ ጊኜው በጣም ረፍዶ ነበር።",
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s08",
     "duration_s": 3.28,
     "languages": [
-      "Amharic"
+      "amh"
     ],
     "transcript": "ኤሊ የመጨረሻው መስመር አጠገብ ደርሳ ነበር።",
-    "flags": []
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s09",
     "duration_s": 6.84,
     "languages": [
-      "Amharic"
+      "amh"
     ],
-    "transcript": "ጥንቸል በሙሉ ኃይሏ ብትሮጥም ቀድማ መድረስ አልቻለችም፤ ኤሊ ውድድሩን አሸነፈች።",
-    "flags": []
+    "transcript": "ጥንቸል በሙሉ ኃይሏ ብትሮጥም ቀድማ መደርስ አልቻለችም፣ ኤሊ ውድድሡን አሸነፀች።",
+    "flags": [
+      "non-Amharic speech"
+    ]
   },
   {
     "id": "s10",
     "duration_s": 7.52,
     "languages": [
-      "Amharic"
+      "amh"
     ],
-    "transcript": "ፍጥነት ብቻ በቂ አይደለም። ቀጣይነት ያለው ዲሲፕሊን፣ ትዕግስት እና ትኩረት ለስኬት ያበቃል።",
-    "flags": []
+    "transcript": "ፍጥንት ቦቻ በቂ አይደለም፣ ቀጣይነት ያለው ዲሲፕሊን፣ ትዕግስት፣ እና ትኩረት ለስኬት ያበቃል።",
+    "flags": [
+      "non-Amharic speech"
+    ]
   }
 ]
