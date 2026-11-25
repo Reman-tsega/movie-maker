@@ -88,5 +88,13 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
 - **Change:** s01–s03 (ሩጫ, ሮጠች, ሩቅ) with the same voice (Kore) on three models:
   A `gemini-3.1-flash-tts-preview` (current), B `gemini-3.8-flash-tts`, C `gemini-2.5-flash-preview-tts`
   (`pipeline/tts_compare.py`, outputs in `outputs/tts_compare/`).
-- **Result:** _to be filled from a native-speaker blind listen._
+- **Result (native-speaker listen, me):** **B, `gemini-3.8-flash-tts`, is clearly the best** at the
+  ejectives in ሩጫ / ሮጠች / ሩቅ. A (3.1, the voice in radio cut v3) and C (2.5) flattened them.
+- **Decision:** narration switched to 3.8 (`models.tts`). s01–s03 reused from this comparison
+  (3 requests saved). The other lines were recorded on the second key; 9/10 are on 3.8. s06 falls
+  back to an older model until the daily quota resets, then gets re-recorded with
+  `--redo s06`.
+- **Quota behaviour seen:** 3.8 calls succeeded and failed alternately within the same minute.
+  Spacing calls 25–60 s apart recovered most of them, which points to a per-minute limit on
+  top of the daily one.
 - **Quota note:** this run also hit the daily quota for 3.1 on both keys, and for 3.8 after 4 calls.

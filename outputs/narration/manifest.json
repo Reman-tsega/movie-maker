@@ -1,28 +1,28 @@
 {
   "s01": {
-    "file": "outputs/narration/s01_e205f7c0f3b9.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 5.52
+    "file": "outputs/narration/s01_49142484aa92.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 4.911
   },
   "s02": {
-    "file": "outputs/narration/s02_d6cfb29b6059.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 3.92
+    "file": "outputs/narration/s02_23b92f4f3e8f.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 3.511
   },
   "s03": {
-    "file": "outputs/narration/s03_1eba372cdbe5.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 4.52
+    "file": "outputs/narration/s03_879104af02e1.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 4.781
   },
   "s04": {
-    "file": "outputs/narration/s04_caf199f6edef.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 4.96
+    "file": "outputs/narration/s04_e5f5675f1423.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 4.661
   },
   "s05": {
-    "file": "outputs/narration/s05_709bf2342104.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 7.68
+    "file": "outputs/narration/s05_e2fb79c1f79d.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 6.081
   },
   "s06": {
     "file": "outputs/narration/s06_6291ea0a8c7b.wav",
@@ -30,23 +30,23 @@
     "duration_s": 7.92
   },
   "s07": {
-    "file": "outputs/narration/s07_dd77fe68bb41.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 4.6
+    "file": "outputs/narration/s07_c34e9bb2b269.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 3.841
   },
   "s08": {
-    "file": "outputs/narration/s08_0c46a73d14c6.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 3.28
+    "file": "outputs/narration/s08_a40d6a140c6a.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 3.161
   },
   "s09": {
-    "file": "outputs/narration/s09_5ba77727e7b5.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 6.84
+    "file": "outputs/narration/s09_979f400ef612.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 6.951
   },
   "s10": {
-    "file": "outputs/narration/s10_0f71108f27a8.wav",
-    "model": "gemini-3.1-flash-tts-preview",
-    "duration_s": 7.52
+    "file": "outputs/narration/s10_c88a844a90e5.wav",
+    "model": "gemini-3.8-flash-tts",
+    "duration_s": 6.701
   }
 }

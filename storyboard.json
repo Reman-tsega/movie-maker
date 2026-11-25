@@ -23,9 +23,9 @@
   },
   "models": {
     "text": "gemini-3.8-flash",
-    "tts": "gemini-3.1-flash-tts-preview",
+    "tts": "gemini-3.8-flash-tts",
     "tts_fallbacks": [
-      "gemini-3.8-flash-tts",
+      "gemini-3.1-flash-tts-preview",
       "gemini-2.5-flash-preview-tts"
     ],
     "image": "@cf/black-forest-labs/flux-2-klein-4b",
