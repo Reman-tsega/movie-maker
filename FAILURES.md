@@ -12,5 +12,6 @@ Format: what broke, what I tried, what fixed it.
 
 ## F2: An API key was pasted into a chat (25 Nov)
 - **Broke:** while setting up, the Gemini key was pasted into a chat with the coding agent.
-- **Fixed:** revoked it and created a new key. Keys live only in `.env` (git-ignored) or in the
-  environment's secret store, and `.env.example` documents the names.
+- **Fix:** revoke that key in Google AI Studio and create a new one (_status: to confirm_). Keys live
+  only in `.env` (git-ignored) or in the environment's secret store, and `.env.example` documents
+  the names. The exposed key was never written to any file in this repo.
