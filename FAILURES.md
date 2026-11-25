@@ -65,3 +65,19 @@ Format: what broke, what I tried, what fixed it.
   next `assemble` failed.
 - **Fixed:** `music.py` recreated it, because it is deterministic. Lesson: keep regenerable binaries
   out of git from the start (`.gitignore` now covers them).
+
+## F8: Gemini TTS flattens Amharic ejective consonants (25 Nov)
+- **Broke:** a native-speaker listen (me) found the voice replacing ejectives with plain consonants:
+  ሩ**ጫ** said as ሩቻ (ጫ→ቻ), ሮ**ጠ**ች as ሮተች (ጠ→ተ), ሩ**ቅ** as ሩክ (ቅ→ክ). The automatic
+  transcription check (E9) did **not** catch this. It "heard" the right words, because a text
+  model transcribes what it expects. Only a human ear caught it.
+- **Why it matters:** ejectives are distinctive Amharic sounds, so a child hears an accent.
+- **Can't fix with spelling:** Ge'ez script already writes the ejective; there is no stronger spelling.
+- **Trying:** the same three lines with three models (EXPERIMENTS E11), chosen by ear.
+
+## F9: The Kaggle GPU job sat in the queue for more than 3 hours (25 Nov)
+- **Broke:** `kaggle kernels push` with `enable_gpu: true` at 17:44 UTC; still `QUEUED` at 20:50 UTC.
+  Account phone-verified, dataset `ready`.
+- **Tried:** checked status, dataset readiness and kernel list.
+- **Next:** start the same kernel from the Kaggle web UI with the accelerator set to "GPU T4 x2".
+  The brief is right that GPU queueing, not money, is the binding constraint.

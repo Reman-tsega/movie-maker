@@ -1,0 +1,3 @@
+file '/home/user/movie-maker/outputs/narration/s01_e205f7c0f3b9.wav'
+file '/home/user/movie-maker/outputs/narration/s02_d6cfb29b6059.wav'
+file '/home/user/movie-maker/outputs/narration/s03_1eba372cdbe5.wav'

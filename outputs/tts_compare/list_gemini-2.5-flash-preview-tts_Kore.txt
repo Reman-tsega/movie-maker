@@ -1,0 +1,3 @@
+file '/home/user/movie-maker/outputs/tts_compare/s01_gemini-2.5-flash-preview-tts_Kore_ad9dd7004658.wav'
+file '/home/user/movie-maker/outputs/tts_compare/s02_gemini-2.5-flash-preview-tts_Kore_03dfd68f8726.wav'
+file '/home/user/movie-maker/outputs/tts_compare/s03_gemini-2.5-flash-preview-tts_Kore_13b5ca7e8fe3.wav'

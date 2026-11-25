@@ -82,3 +82,11 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
   the checker, not the audio.
 - **Decision:** accept "Amharic", "am" or "amh", and ask for English language names in the prompt.
   An LLM-based check needs its own tolerance for label variation.
+
+## E11: Which TTS model pronounces Amharic ejectives best? (in progress)
+- **Hypothesis:** a newer or larger TTS model keeps ጫ / ጠ / ቅ distinct.
+- **Change:** s01–s03 (ሩጫ, ሮጠች, ሩቅ) with the same voice (Kore) on three models:
+  A `gemini-3.1-flash-tts-preview` (current), B `gemini-3.8-flash-tts`, C `gemini-2.5-flash-preview-tts`
+  (`pipeline/tts_compare.py`, outputs in `outputs/tts_compare/`).
+- **Result:** _to be filled from a native-speaker blind listen._
+- **Quota note:** this run also hit the daily quota for 3.1 on both keys, and for 3.8 after 4 calls.
