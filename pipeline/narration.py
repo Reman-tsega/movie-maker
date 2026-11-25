@@ -20,7 +20,7 @@ API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateC
 SAMPLE_RATE = 24000  # Gemini TTS returns 24 kHz, 16-bit, mono PCM
 
 
-def tts(model: str, voice: str, style: str, text: str) -> bytes:
+def tts(model: str, voice: str, style: str, text: str, key: str | None = None) -> bytes:
     body = {
         "contents": [{"parts": [{"text": f"{style}:\n{text}" if style else text}]}],
         "generationConfig": {
@@ -32,7 +32,7 @@ def tts(model: str, voice: str, style: str, text: str) -> bytes:
     def call():
         try:
             r = requests.post(API.format(model=model), json=body, timeout=120,
-                              headers={"x-goog-api-key": os.environ.get("GEMINI_API_KEY", "")})
+                              headers={"x-goog-api-key": key or os.environ.get("GEMINI_API_KEY", "")})
         except requests.RequestException as e:
             raise Retryable(str(e))
         if r.status_code == 429 and "PerDay" in r.text:
@@ -52,13 +52,16 @@ def tts_any(models: list[str], voice: str, style: str, text: str):
     """Try each TTS model in order; a model whose free daily quota is spent is skipped (each
     Gemini model has its own quota, found in FAILURES F3)."""
     errors = []
-    for m in models:
+    keys = [k for k in (os.environ.get("GEMINI_API_KEY"), os.environ.get("GEMINI_API_KEY_2")) if k]
+    # each (key's project, model) pair has its own daily quota: same model on the next key first,
+    # so the voice stays the same; a different model only when every key is spent
+    for m, (ki, key) in ((m, k) for m in models for k in enumerate(keys)):
         try:
-            return m, tts(m, voice, style, text)
+            return m, tts(m, voice, style, text, key=key)
         except RuntimeError as e:
             msg = str(e)
             if "429" in msg and "per day" in msg.lower() or "PerDay" in msg:
-                errors.append(f"{m}: daily quota spent")
+                errors.append(f"{m} (key {ki + 1}): daily quota spent")
                 continue
             raise
     raise DailyQuota("; ".join(errors))
