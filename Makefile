@@ -21,6 +21,7 @@ smoke:
 
 narration:
 	$(P)/narration.py
+	-$(P)/narration_check.py
 
 refs:
 	$(P)/keyframes.py --refs-only

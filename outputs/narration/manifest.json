@@ -1,52 +1,52 @@
 {
   "s01": {
-    "file": "outputs/narration/s01_898f946e50a7.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 18.071
+    "file": "outputs/narration/s01_e205f7c0f3b9.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 5.52
   },
   "s02": {
-    "file": "outputs/narration/s02_600b3750927d.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 4.881
+    "file": "outputs/narration/s02_d6cfb29b6059.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 3.92
   },
   "s03": {
-    "file": "outputs/narration/s03_7fb1c3779419.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 14.741
+    "file": "outputs/narration/s03_1eba372cdbe5.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 4.52
   },
   "s04": {
-    "file": "outputs/narration/s04_da6e78b5cac2.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 19.241
+    "file": "outputs/narration/s04_caf199f6edef.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 4.96
   },
   "s05": {
-    "file": "outputs/narration/s05_196e2a4d0490.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 21.181
+    "file": "outputs/narration/s05_709bf2342104.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 7.68
   },
   "s06": {
-    "file": "outputs/narration/s06_7eb02c118ce9.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 16.581
+    "file": "outputs/narration/s06_6291ea0a8c7b.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 7.92
   },
   "s07": {
-    "file": "outputs/narration/s07_67d4beee0804.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 17.351
+    "file": "outputs/narration/s07_e21c9c3825c2.wav",
+    "model": "gemini-2.5-flash-preview-tts",
+    "duration_s": 4.571
   },
   "s08": {
-    "file": "outputs/narration/s08_53ce0aee26b1.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 15.621
+    "file": "outputs/narration/s08_0c46a73d14c6.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 3.28
   },
   "s09": {
-    "file": "outputs/narration/s09_6517a4cbb6e0.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 23.841
+    "file": "outputs/narration/s09_5ba77727e7b5.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 6.84
   },
   "s10": {
-    "file": "outputs/narration/s10_f25c2b2d7b24.wav",
-    "model": "gemini-3.8-flash-tts",
-    "duration_s": 21.871
+    "file": "outputs/narration/s10_0f71108f27a8.wav",
+    "model": "gemini-3.1-flash-tts-preview",
+    "duration_s": 7.52
   }
 }

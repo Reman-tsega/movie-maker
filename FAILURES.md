@@ -32,8 +32,16 @@ Format: what broke, what I tried, what fixed it.
 ## F4: The narration is twice as long as planned (25 Nov)
 - **Broke:** 10 lines, 90 Amharic words, produced 173 s of speech (s01: 9 words in 18 s), so the
   radio cut is 187 s against a 60–90 s target. s02 (5 words) was a normal 4.9 s.
-- **Suspected cause:** the long English style instruction placed before the text is sometimes read
-  aloud. Being checked by listening (s01 vs s02).
+- **Cause (confirmed):** Gemini TTS **read the English style instruction aloud**. A transcription of
+  s01 by `gemini-3-flash-preview` gave 0:00–0:11 English ("Read this in Amharic like a warm
+  grandmother…"), then 0:11–0:18 the Amharic line. My tester couldn't make out a voice at all in
+  VLC: the file sounded like the wrong content in the wrong language.
+- **Tried:** two prompt formats on one line (EXPERIMENTS E7). "Say warmly …: <text>" still had
+  English at the start.
+- **Fixed:** send the Amharic text only (`voice.style_instruction` is now empty); tone comes from
+  the voice choice. Speech went from 173 s to 56.7 s, and the radio cut from 187 s to 71.5 s.
+  Added `pipeline/narration_check.py`, which transcribes every line and flags non-Amharic speech or
+  a slow rate; the result is 10/10 OK.
 - **Also:** Gemini's text models returned 503 "high demand" for a transcription check, and
   `gemini-2.5-flash` returned 404, "no longer available to new users".
 
@@ -41,3 +49,19 @@ Format: what broke, what I tried, what fixed it.
 - **Broke:** HTTP 400 `Additional or unevaluated properties '/seed' ... not allowed`.
 - **Fixed:** switched to FLUX.2 klein 4B (Apache 2.0), which accepts multipart input with reference
   images. See EXPERIMENTS E3 and E4.
+
+## F6: The one-request batch could not be split at the pauses (25 Nov)
+- **Broke:** to save quota I sent all 10 lines in one TTS request (18.6 s) and cut the audio at the
+  9 longest pauses. The length check rejected the cut, because the voice does not pause clearly
+  enough between some lines.
+- **Fixed (fallback):** the pipeline logged the batch as an error and generated per line. One
+  request was spent on a failed idea, but nothing broke.
+- **Side effect:** the main TTS model hit its quota on s07, so s07 used `gemini-2.5-flash-preview-tts`.
+  The voice may differ slightly, so it will be re-recorded when the quota resets.
+
+## F7: The history rewrite deleted a cached file (25 Nov)
+- **Broke:** to get the repo bundle under the size limit I removed large regenerable files from git
+  history (`filter-branch`). That also deleted the working copy of the placeholder music, and the
+  next `assemble` failed.
+- **Fixed:** `music.py` recreated it, because it is deterministic. Lesson: keep regenerable binaries
+  out of git from the start (`.gitignore` now covers them).

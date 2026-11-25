@@ -51,3 +51,26 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
   band, and the cache regenerates only those two.
 - **Result:** both fixed; `runs.jsonl` shows 2 new image calls and 8 cache hits (and 2 for the refs).
 - **Decision:** per-shot prompt fixes, never a full re-run.
+
+## E7: How to give the TTS a style without it being read aloud
+- **Hypothesis:** a short "Say warmly …:" prefix steers the tone without being spoken.
+- **Change:** the same line (s02) with (A) the Amharic text only and (B) "Say warmly and calmly, like a
+  grandmother telling a bedtime story: <text>", both on `gemini-3.1-flash-tts-preview`, then
+  transcribed.
+- **Result:** (A) 4.3 s, Amharic only. (B) 6.0 s, with English detected at the start.
+- **Decision:** text only. Practice note: "a short style instruction improves the voice" (from the
+  brief's tips) did *not* hold for Amharic. The model can't tell an English instruction from the
+  text it should speak.
+
+## E8: One TTS request for the whole script
+- **Hypothesis:** generating all 10 lines in one request and cutting at the longest pauses saves
+  9 of the 10 daily requests.
+- **Result:** the cut failed the length check (see F6), so it fell back to per-line.
+- **Decision:** keep per-line as the default (it also makes retakes cheap). Batch mode stays in the
+  code behind a validity check and can be turned off with `--per-line`.
+
+## E9: Automatic transcription as a narration check
+- **Hypothesis:** a text model can check TTS output in a language I can't verify by ear at scale.
+- **Result:** it caught the spoken instruction (F4) that I had only suspected from durations.
+  Now 10/10 lines are Amharic and match the script, apart from spelling variants (ጸ/ፀ).
+- **Decision:** `narration_check.py` runs after every narration change.

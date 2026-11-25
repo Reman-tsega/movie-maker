@@ -23,9 +23,9 @@
   },
   "models": {
     "text": "gemini-3.8-flash",
-    "tts": "gemini-3.8-flash-tts",
+    "tts": "gemini-3.1-flash-tts-preview",
     "tts_fallbacks": [
-      "gemini-3.1-flash-tts-preview",
+      "gemini-3.8-flash-tts",
       "gemini-2.5-flash-preview-tts"
     ],
     "image": "@cf/black-forest-labs/flux-2-klein-4b",
@@ -34,7 +34,7 @@
   },
   "voice": {
     "name": "Kore",
-    "style_instruction": "Read this in Amharic like a warm grandmother telling a bedtime story to young children: calm, clear, unhurried, with gentle expression"
+    "style_instruction": ""
   },
   "music": {
     "chosen_track": null,
