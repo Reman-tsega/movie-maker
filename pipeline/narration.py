@@ -126,8 +126,12 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     manifest = {}
 
+    redo = set()
+    if "--redo" in sys.argv:                      # e.g. --redo s07: re-record a line made by a fallback
+        redo = set(sys.argv[sys.argv.index("--redo") + 1].split(","))
+
     def cached_file(shot):
-        for m in models:
+        for m in (models[:1] if shot["id"] in redo else models):
             p = out_dir / f"{shot['id']}_{input_hash(m, voice, style, shot['narration'])}.wav"
             if p.exists():
                 return p, m
