@@ -18,12 +18,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import sys
 import time
 from pathlib import Path
 
-REPO = Path(__file__).resolve().parent.parent
+REPO = Path(os.environ.get("MM_REPO", Path(__file__).resolve().parent.parent))
 ACE = Path("/kaggle/working/ACE-Step-1.5")
 
 

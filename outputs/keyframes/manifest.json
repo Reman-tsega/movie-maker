@@ -1,0 +1,18 @@
+{
+  "references": {
+    "rabbit": "outputs/keyframes/ref_rabbit_99ec3ed614a9.jpg",
+    "tortoise": "outputs/keyframes/ref_tortoise_c4b4626ca20a.jpg"
+  },
+  "shots": {
+    "s01": "outputs/keyframes/s01_0ca5ba78569c.jpg",
+    "s02": "outputs/keyframes/s02_339e78807083.jpg",
+    "s03": "outputs/keyframes/s03_6463a7fab82a.jpg",
+    "s04": "outputs/keyframes/s04_b12779dce46c.jpg",
+    "s05": "outputs/keyframes/s05_5305591a96ad.jpg",
+    "s06": "outputs/keyframes/s06_cff776bf2445.jpg",
+    "s07": "outputs/keyframes/s07_a1840b5c9f1a.jpg",
+    "s08": "outputs/keyframes/s08_724810ac349c.jpg",
+    "s09": "outputs/keyframes/s09_02b62df52364.jpg",
+    "s10": "outputs/keyframes/s10_bd00dad9e0b4.jpg"
+  }
+}

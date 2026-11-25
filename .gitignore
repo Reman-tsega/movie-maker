@@ -7,3 +7,4 @@ __pycache__/
 .venv/
 # scratch
 outputs/tmp/
+outputs/final/work/

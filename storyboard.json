@@ -4,24 +4,30 @@
   "language": "am-ET",
   "audience": "Children aged about 5-12 in Ethiopian families, watching on a parent's phone (vertical) or a family TV/laptop (horizontal), usually with an adult nearby.",
   "intent": "At the end, a child should be able to say the lesson in their own words: being fast is not enough, keeping going every day (ዲሲፕሊን እና ትጋት) is what wins.",
-  "target_total_s": [60, 90],
+  "target_total_s": [
+    60,
+    90
+  ],
   "style_block": "warm hand-painted children's picture-book illustration, soft gouache texture, Ethiopian highland landscape with green rolling hills, yellow meskel daisies (adey abeba) and acacia trees, gentle golden light, rich earthy colours, simple clear shapes, subject centred in frame, no text, no letters",
   "characters": {
     "rabbit": {
       "description": "a small slender rabbit with soft grey-brown fur, a white belly, very long upright ears and bright amber eyes, wearing a thin green, yellow and red woven scarf around her neck",
-      "reference_prompt": "character reference sheet of a small slender rabbit with soft grey-brown fur, a white belly, very long upright ears and bright amber eyes, wearing a thin green, yellow and red woven scarf, three poses: front view, side view, running, plain cream background",
+      "reference_prompt": "a single small slender rabbit standing alone, full body, three-quarter view, soft grey-brown fur, a white belly, very long upright ears and bright amber eyes, wearing a thin green, yellow and red woven scarf around her neck, one character only, centred, plain cream background, no landscape",
       "reference_seed": 1101
     },
     "tortoise": {
       "description": "an old gentle tortoise with a high domed shell of warm brown and amber hexagon patterns, calm kind eyes and a small white cotton shawl with a colourful woven tibeb border over her shell",
-      "reference_prompt": "character reference sheet of an old gentle tortoise with a high domed shell of warm brown and amber hexagon patterns, calm kind eyes and a small white cotton shawl with a colourful woven tibeb border over her shell, three poses: front view, side view, walking, plain cream background",
+      "reference_prompt": "a single old gentle tortoise standing alone, full body, three-quarter view, high domed shell of warm brown and amber hexagon patterns, calm kind eyes, a small white cotton shawl with a colourful woven tibeb border over her shell, one character only, centred, plain cream background, no landscape",
       "reference_seed": 2202
     }
   },
   "models": {
     "text": "gemini-3.8-flash",
     "tts": "gemini-3.8-flash-tts",
-    "tts_fallbacks": ["gemini-3.1-flash-tts-preview", "gemini-2.5-flash-preview-tts"],
+    "tts_fallbacks": [
+      "gemini-3.1-flash-tts-preview",
+      "gemini-2.5-flash-preview-tts"
+    ],
     "image": "@cf/black-forest-labs/flux-2-klein-4b",
     "video": "Wan-AI/Wan2.2-TI2V-5B",
     "music": "ACE-Step-1.5"
@@ -35,118 +41,282 @@
     "caption": "gentle instrumental children's folk lullaby, Ethiopian krar and soft masenqo, light hand percussion, warm acoustic texture, playful then calm, no vocals",
     "bpm": 84,
     "key": "C major",
-    "duck": {"threshold": 0.02, "ratio": 6, "attack_ms": 300, "release_ms": 1500, "music_gain_db": -6},
+    "duck": {
+      "threshold": 0.02,
+      "ratio": 6,
+      "attack_ms": 300,
+      "release_ms": 1500,
+      "music_gain_db": -6
+    },
     "cues": [
-      {"id": "m1", "from_shot": "s01", "to_shot": "s04", "description": "Playful, bouncy: the race starts and the rabbit shows off"},
-      {"id": "m2", "from_shot": "s05", "to_shot": "s06", "description": "Slow and sleepy for the nap; a steady pulse for the tortoise's walk"},
-      {"id": "m3", "from_shot": "s07", "to_shot": "s09", "description": "Builds tension as the rabbit wakes and sprints"},
-      {"id": "m4", "from_shot": "s10", "to_shot": "s10", "description": "Warm resolution: the opening theme returns softly under the moral"}
+      {
+        "id": "m1",
+        "from_shot": "s01",
+        "to_shot": "s04",
+        "description": "Playful, bouncy: the race starts and the rabbit shows off"
+      },
+      {
+        "id": "m2",
+        "from_shot": "s05",
+        "to_shot": "s06",
+        "description": "Slow and sleepy for the nap; a steady pulse for the tortoise's walk"
+      },
+      {
+        "id": "m3",
+        "from_shot": "s07",
+        "to_shot": "s09",
+        "description": "Builds tension as the rabbit wakes and sprints"
+      },
+      {
+        "id": "m4",
+        "from_shot": "s10",
+        "to_shot": "s10",
+        "description": "Warm resolution: the opening theme returns softly under the moral"
+      }
     ]
   },
   "shots": [
     {
-      "id": "s01", "beat": "Start of the race", "shot_size": "wide",
+      "id": "s01",
+      "beat": "Start of the race",
+      "shot_size": "wide",
       "reason": "Establishes the place, the two characters and the race before anything happens.",
-      "duration_s": 6, "characters": ["rabbit", "tortoise"],
+      "duration_s": 6,
+      "characters": [
+        "rabbit",
+        "tortoise"
+      ],
       "image_prompt": "the rabbit and the tortoise standing side by side at a simple start line of small stones on a winding dirt trail through the hills, sunny morning",
-      "motion": {"mode": "kenburns", "zoom": [1.0, 1.12], "pan": "center", "prompt": "slow push-in, light breeze moves the grass"},
+      "motion": {
+        "mode": "kenburns",
+        "zoom": [
+          1.0,
+          1.12
+        ],
+        "pan": "center",
+        "prompt": "slow push-in, light breeze moves the grass"
+      },
       "narration": "በአንድ ጸሐያማ ቀን ጥንቸል እና ኤሊ የሩጫ ውድድር ጀመሩ።",
       "subtitle_en": "On a bright, sunny day, a rabbit and a tortoise began a race.",
       "seed": 101
     },
     {
-      "id": "s02", "beat": "The rabbit is fast", "shot_size": "medium",
+      "id": "s02",
+      "beat": "The rabbit is fast",
+      "shot_size": "medium",
       "reason": "Shows the rabbit's speed, the strength that will later make her proud.",
-      "duration_s": 5, "characters": ["rabbit"],
+      "duration_s": 5,
+      "characters": [
+        "rabbit"
+      ],
       "image_prompt": "the rabbit sprinting along the dirt trail, ears flying back, dust puffs behind her paws, motion lines",
-      "motion": {"mode": "wan", "zoom": [1.0, 1.08], "pan": "right", "prompt": "the rabbit runs quickly forward, camera tracks alongside, dust rises"},
+      "motion": {
+        "mode": "wan",
+        "zoom": [
+          1.0,
+          1.08
+        ],
+        "pan": "right",
+        "prompt": "the rabbit runs quickly forward, camera tracks alongside, dust rises"
+      },
       "narration": "ውድድሩ ሲጀምር ጥንቸል በፍጥነት ሮጠች፣",
       "subtitle_en": "As the race began, the rabbit ran very fast,",
       "seed": 102
     },
     {
-      "id": "s03", "beat": "Looking back", "shot_size": "wide",
+      "id": "s03",
+      "beat": "Looking back",
+      "shot_size": "wide",
       "reason": "The gap between them is the setup for the rabbit's mistake; children must see how far behind the tortoise is.",
-      "duration_s": 5, "characters": ["rabbit", "tortoise"],
+      "duration_s": 5,
+      "characters": [
+        "rabbit",
+        "tortoise"
+      ],
       "image_prompt": "the rabbit in the foreground looking back over her shoulder, far away down the long winding trail the tortoise is a tiny figure",
-      "motion": {"mode": "kenburns", "zoom": [1.1, 1.0], "pan": "left", "prompt": "slow pull-back revealing the long trail"},
+      "motion": {
+        "mode": "kenburns",
+        "zoom": [
+          1.1,
+          1.0
+        ],
+        "pan": "left",
+        "prompt": "slow pull-back revealing the long trail"
+      },
       "narration": "ወደ ኋላም ስትመለከት ኤሊ ገና በጣም ሩቅ ነበረች።",
       "subtitle_en": "and when she looked back, the tortoise was still far behind.",
       "seed": 103
     },
     {
-      "id": "s04", "beat": "Pride", "shot_size": "close-up",
+      "id": "s04",
+      "beat": "Pride",
+      "shot_size": "close-up",
       "reason": "A close-up on her proud face makes the moment of overconfidence clear to a child.",
-      "duration_s": 5, "characters": ["rabbit"],
-      "image_prompt": "close-up of the rabbit's face, smug confident smile, one eyebrow raised, paws on hips",
-      "motion": {"mode": "kenburns", "zoom": [1.0, 1.15], "pan": "center", "prompt": "slow push-in on the face"},
+      "duration_s": 5,
+      "characters": [
+        "rabbit"
+      ],
+      "image_prompt": "close-up of the rabbit's face, smug confident smile, one eyebrow raised, paws on hips, the whole frame fully painted edge to edge with grass and hills, no blank or white areas",
+      "motion": {
+        "mode": "kenburns",
+        "zoom": [
+          1.0,
+          1.15
+        ],
+        "pan": "center",
+        "prompt": "slow push-in on the face"
+      },
       "narration": "ጥንቸል በፍጥነቷ በመኩራራት «ጊዜ አለኝ» ብላ አሰበች።",
       "subtitle_en": "Proud of her speed, the rabbit thought, \"I have plenty of time.\"",
       "seed": 104
     },
     {
-      "id": "s05", "beat": "The nap", "shot_size": "medium",
+      "id": "s05",
+      "beat": "The nap",
+      "shot_size": "medium",
       "reason": "The turning point of the story: the decision to rest becomes a deep sleep.",
-      "duration_s": 7, "characters": ["rabbit"],
-      "image_prompt": "the rabbit curled up asleep in the cool shade under a large acacia tree beside the trail, eyes closed, peaceful",
-      "motion": {"mode": "wan", "zoom": [1.0, 1.1], "pan": "center", "prompt": "the rabbit breathes slowly while sleeping, leaves sway gently, fixed camera"},
+      "duration_s": 7,
+      "characters": [
+        "rabbit"
+      ],
+      "image_prompt": "the rabbit curled up asleep in the cool shade under a large acacia tree beside the trail, eyes closed, peaceful, the whole frame fully painted edge to edge with grass and hills, no blank or white areas",
+      "motion": {
+        "mode": "wan",
+        "zoom": [
+          1.0,
+          1.1
+        ],
+        "pan": "center",
+        "prompt": "the rabbit breathes slowly while sleeping, leaves sway gently, fixed camera"
+      },
       "narration": "ጥንቸል በአንድ ትልቅ ዛፍ ጥላ ስር ትንሽ ልረፍ ብላ ተኛች፤ ነገር ግን ጥልቅ እንቅልፍ ወሰዳት።",
       "subtitle_en": "She lay down under a big tree for a short rest, but she fell fast asleep.",
       "seed": 105
     },
     {
-      "id": "s06", "beat": "Steady steps", "shot_size": "medium close-up",
+      "id": "s06",
+      "beat": "Steady steps",
+      "shot_size": "medium close-up",
       "reason": "The heart of the lesson: the tortoise keeps going, step by step, without stopping.",
-      "duration_s": 7, "characters": ["tortoise"],
+      "duration_s": 7,
+      "characters": [
+        "tortoise"
+      ],
       "image_prompt": "the tortoise walking steadily along the dirt trail, one foot forward, calm determined face, low angle near the ground",
-      "motion": {"mode": "wan", "zoom": [1.0, 1.08], "pan": "right", "prompt": "the tortoise takes slow steady steps forward, camera moves slowly with her"},
+      "motion": {
+        "mode": "wan",
+        "zoom": [
+          1.0,
+          1.08
+        ],
+        "pan": "right",
+        "prompt": "the tortoise takes slow steady steps forward, camera moves slowly with her"
+      },
       "narration": "በዚህ ጊዜ ኤሊ ሳትቆም፣ ሳትቸኩል እና ዲሲፕሊን ባለው እርምጃ ወደፊት መጓዟን ቀጠለች።",
       "subtitle_en": "Meanwhile, the tortoise kept going, without stopping and without hurrying, with steady, disciplined steps.",
       "seed": 106
     },
     {
-      "id": "s07", "beat": "Waking up too late", "shot_size": "medium close-up",
+      "id": "s07",
+      "beat": "Waking up too late",
+      "shot_size": "medium close-up",
       "reason": "The consequence of the rabbit's choice; the lower sun shows time has passed.",
-      "duration_s": 5, "characters": ["rabbit"],
+      "duration_s": 5,
+      "characters": [
+        "rabbit"
+      ],
       "image_prompt": "the rabbit waking up suddenly under the acacia tree, eyes wide in shock, ears straight up, low orange afternoon sun",
-      "motion": {"mode": "kenburns", "zoom": [1.15, 1.0], "pan": "up", "prompt": "quick small push-in on the shocked face"},
+      "motion": {
+        "mode": "kenburns",
+        "zoom": [
+          1.15,
+          1.0
+        ],
+        "pan": "up",
+        "prompt": "quick small push-in on the shocked face"
+      },
       "narration": "ጥንቸል ከእንቅልፏ ስትነቃ ጊዜው በጣም ረፍዶ ነበር።",
       "subtitle_en": "When the rabbit woke up, it was already very late.",
       "seed": 107
     },
     {
-      "id": "s08", "beat": "Almost there", "shot_size": "wide",
+      "id": "s08",
+      "beat": "Almost there",
+      "shot_size": "wide",
       "reason": "Shows the tortoise near the finish so the ending is clear before it happens.",
-      "duration_s": 5, "characters": ["tortoise"],
+      "duration_s": 5,
+      "characters": [
+        "tortoise"
+      ],
       "image_prompt": "the tortoise a few steps from a finish line made of a simple ribbon between two wooden posts on a hilltop, golden afternoon light",
-      "motion": {"mode": "kenburns", "zoom": [1.0, 1.1], "pan": "center", "prompt": "slow push-in toward the finish line"},
+      "motion": {
+        "mode": "kenburns",
+        "zoom": [
+          1.0,
+          1.1
+        ],
+        "pan": "center",
+        "prompt": "slow push-in toward the finish line"
+      },
       "narration": "ኤሊ የመጨረሻው መስመር አጠገብ ደርሳ ነበር።",
       "subtitle_en": "The tortoise was already near the finish line.",
       "seed": 108
     },
     {
-      "id": "s09", "beat": "Too late to win", "shot_size": "wide",
+      "id": "s09",
+      "beat": "Too late to win",
+      "shot_size": "wide",
       "reason": "The climax: the rabbit's speed comes too late, and the tortoise crosses first.",
-      "duration_s": 7, "characters": ["rabbit", "tortoise"],
+      "duration_s": 7,
+      "characters": [
+        "rabbit",
+        "tortoise"
+      ],
       "image_prompt": "the tortoise crossing the ribbon finish line on the hilltop while the rabbit races up the hill behind her, too far back, golden light",
-      "motion": {"mode": "wan", "zoom": [1.0, 1.08], "pan": "center", "prompt": "the tortoise steps through the ribbon, the rabbit runs up the hill behind, fixed camera"},
+      "motion": {
+        "mode": "wan",
+        "zoom": [
+          1.0,
+          1.08
+        ],
+        "pan": "center",
+        "prompt": "the tortoise steps through the ribbon, the rabbit runs up the hill behind, fixed camera"
+      },
       "narration": "ጥንቸል በሙሉ ኃይሏ ብትሮጥም ቀድማ መድረስ አልቻለችም—ኤሊ ውድድሩን አሸነፈች።",
       "subtitle_en": "The rabbit ran with all her strength, but she could not get there first. The tortoise won the race.",
       "seed": 109
     },
     {
-      "id": "s10", "beat": "The lesson", "shot_size": "medium",
+      "id": "s10",
+      "beat": "The lesson",
+      "shot_size": "medium",
       "reason": "Ends on calm and kindness, the two together, so the moral lands without shaming the rabbit.",
-      "duration_s": 8, "characters": ["rabbit", "tortoise"],
+      "duration_s": 8,
+      "characters": [
+        "rabbit",
+        "tortoise"
+      ],
       "image_prompt": "the tortoise and the rabbit sitting together on the hilltop at sunset, the rabbit smiling humbly, the tortoise kind and proud, warm glowing sky",
-      "motion": {"mode": "kenburns", "zoom": [1.12, 1.0], "pan": "center", "prompt": "slow pull-back to a wide sunset"},
+      "motion": {
+        "mode": "kenburns",
+        "zoom": [
+          1.12,
+          1.0
+        ],
+        "pan": "center",
+        "prompt": "slow pull-back to a wide sunset"
+      },
       "narration": "ፍጥነት ብቻ በቂ አይደለም፤ ቀጣይነት ያለው ዲሲፕሊን፣ ትዕግሥት እና ትኩረት ለስኬት ያበቃል።",
       "subtitle_en": "Speed alone is not enough. Steady discipline, patience and focus lead to success.",
       "seed": 110
     }
   ],
   "end_card": {
-    "lines": ["Made with AI", "Images: FLUX on Cloudflare Workers AI · Motion: Wan 2.2 · Music: ACE-Step 1.5 · Voice: Gemini TTS", "A family story retold in Amharic"],
+    "lines": [
+      "Made with AI",
+      "Images: FLUX on Cloudflare Workers AI · Motion: Wan 2.2 · Music: ACE-Step 1.5 · Voice: Gemini TTS",
+      "A family story retold in Amharic"
+    ],
     "duration_s": 4
   }
 }

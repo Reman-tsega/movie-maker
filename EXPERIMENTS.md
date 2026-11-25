@@ -31,3 +31,23 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
   disappeared**, because the prompt did not mention it.
 - **Decision:** every keyframe gets (a) the character reference sheet as an input image **and**
   (b) the full locked character description in the prompt. Implemented in `keyframes.py`.
+
+## E5: Multi-pose reference sheets leak into the shots
+- **Hypothesis:** a 3-pose character sheet (front, side, running) is the best reference.
+- **Change:** generated all 10 keyframes with the multi-pose sheets as `input_image_0/1`.
+- **Result:** identity was very consistent, but 4 of 10 shots (s01, s02, s07, s10) showed 2–3
+  copies of the rabbit, and s01 lost the tortoise. The model copied the sheet's layout, not just
+  the character.
+- **Change 2:** single-pose, full-body references, plus an explicit count in every prompt
+  ("exactly one rabbit and exactly one tortoise, no duplicates").
+- **Result 2:** 0 of 10 shots with duplicates; s01 now shows both characters at the start line.
+  Identity stayed the same. Remaining defect: s04 and s05 copied the reference's blank cream
+  background at the bottom.
+- **Decision:** single-pose references and explicit counts. Practice note: "a reference sheet
+  before keyframes" helped, but the *shape* of the sheet mattered as much as having one.
+
+## E6: Fix only the shots that are wrong
+- **Hypothesis:** adding "fully painted edge to edge, no blank areas" to s04 and s05 fixes the cream
+  band, and the cache regenerates only those two.
+- **Result:** both fixed; `runs.jsonl` shows 2 new image calls and 8 cache hits (and 2 for the refs).
+- **Decision:** per-shot prompt fixes, never a full re-run.

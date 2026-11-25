@@ -64,7 +64,10 @@ def small_ref(path: Path) -> Path:
 
 def build_prompt(sb: dict, shot: dict) -> str:
     chars = "; ".join(f"the {c} is {sb['characters'][c]['description']}" for c in shot["characters"])
-    return f"{shot['shot_size']} shot. {shot['image_prompt']}. {chars}. Style: {sb['style_block']}"
+    # E5: say exactly who is in frame, or the model copies the reference sheet's extra poses
+    count = " and ".join(f"exactly one {c}" for c in shot["characters"])
+    return (f"{shot['shot_size']} shot. {shot['image_prompt']}. {chars}. The scene contains {count}, "
+            f"no other animals, no duplicates. Style: {sb['style_block']}")
 
 
 def make(stage_dir, key: str, model: str, prompt: str, seed: int, log_shot: str,
