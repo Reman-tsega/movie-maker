@@ -12,6 +12,14 @@
 - **Public post:** https://youtube.com/shorts/GlGOu8khYUc (AI label on) ·
   **Film files:** https://drive.google.com/drive/folders/1m1z7Ug0wlr6v-WjR0Pk4qgK7SySBNioZ
 
+**What the pipeline does:** `storyboard.json` (validated by a JSON Schema) → **script** (screenplay +
+back-translation check) → **narration** (Gemini 3.8 Flash TTS) → **keyframes** (FLUX.2 klein 4B on
+Cloudflare, from character reference sheets) → **shots** (eased FFmpeg camera moves) → **music**
+(chosen ACE-Step 1.5 track) → **assembly** (FFmpeg: crossfades, ducking, subtitles, −14 LUFS, AI end
+card, 9:16 + 16:9). Each stage is cached by a hash of its inputs, retried on transient errors,
+validated afterwards, and every call is logged in `runs.jsonl` with model, parameters, seed,
+latency and list-price cost. **What it costs:** under $0.15 at list price; $0 on the free tiers used.
+
 **Single reproduction entry point:** `make film`, or on any OS (Windows too) `python pipeline/film.py`
 
 ---
