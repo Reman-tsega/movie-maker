@@ -98,3 +98,13 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
   Spacing calls 25–60 s apart recovered most of them, which points to a per-minute limit on
   top of the daily one.
 - **Quota note:** this run also hit the daily quota for 3.1 on both keys, and for 3.8 after 4 calls.
+
+## E12: Two characters in a vertical frame
+- **Hypothesis:** a centre crop of the square keyframe works for 9:16.
+- **Result (rough cut v1 review):** in s01, s09 and s10 (two characters side by side), the 9:16 centre
+  crop cut the tortoise in half.
+- **Change:** for 9:16 only, shots with two characters (derived from `shot.characters` in the
+  storyboard) pan slowly from left to right across the full width.
+- **Result:** the frame at 0.5 s shows the rabbit, at 5 s the tortoise; one-character shots are unchanged.
+- **Decision:** keep. The rule lives in `assemble.py` but is driven by the storyboard, so a new
+  two-character shot gets it automatically.

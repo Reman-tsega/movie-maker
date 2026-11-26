@@ -117,8 +117,15 @@ def build_video(sb, rows, total, shots, aspect, audio: Path, srt: Path, dst: Pat
     else:
         for r in rows:
             args += ["-i", str(ROOT / shots[r["id"]]["file"])]
+        n_chars = {s["id"]: len(s["characters"]) for s in sb["shots"]}
         for i, r in enumerate(rows):
-            f.append(f"[{i}]scale={max(w, h)}:{max(w, h)},crop={w}:{h},setsar=1,fps={FPS},"
+            # 9:16 cuts a square frame to its middle third; with two characters side by side one is
+            # lost, so pan slowly from left to right across the whole frame instead (rough cut v1 review)
+            if h > w and n_chars[r["id"]] > 1:
+                crop = f"crop={w}:{h}:x='(in_w-out_w)*min(t/{r['dur']},1)':y=0"
+            else:
+                crop = f"crop={w}:{h}"
+            f.append(f"[{i}]scale={max(w, h)}:{max(w, h)},{crop},setsar=1,fps={FPS},"
                      f"tpad=stop_mode=clone:stop_duration=2,trim=duration={r['dur']},setpts=PTS-STARTPTS[v{i}]")
         f.append("".join(f"[v{i}]" for i in range(len(rows))) + f"concat=n={len(rows)}:v=1:a=0[body]")
     f.append(f"color=c=black:s={w}x{h}:r={FPS}:d={ec},{end_card_inputs(sb, w, h, tmp)},"
