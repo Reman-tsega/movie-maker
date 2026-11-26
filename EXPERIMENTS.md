@@ -119,7 +119,14 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
   Ethiopian" in all three. **The model ignored the krar and masenqo** in the caption. A likely
   cause is little Ethiopian instrumentation in its training data; to test with a caption without
   the instrument names.
-- **Choice:** _by ear, each candidate under the full ducked narration (A = seed 11, B = 22, C = 33)._
+- **Choice, by ear** (each candidate under the full ducked narration, A = seed 11, B = 22, C = 33):
+  - **A (seed 11): chosen.** Softest and least intrusive under the Amharic voice; the words stay
+    clear in every beat, and it keeps a light, playful fable mood.
+  - B (seed 22): a slightly stronger melodic and percussive presence between phrases; pleasant, but
+    a touch more prominent under the voice than A.
+  - C (seed 33): more active melodic and accented phrasing that competes with the narration in places.
+- **Decision:** seed 11 → `outputs/music/score_chosen.wav` (`music.chosen_track`). The other two are
+  kept locally but not committed (13 MB each, F12).
 
 ## E14: Bracketed delivery tags (from user test 1)
 - **Hypothesis (Bilkis's suggestion):** delivery cues make the voice less dull, if they aren't spoken.
@@ -139,3 +146,13 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
 - Suggested by Bilkis in user test 1 as better at Amharic than other models. Not tested before the
   deadline: it needs a new account, key and API host. The comparison would reuse `tts_compare.py`
   on the same three ejective lines (s01–s03), blind-rated by a native speaker as in E11.
+
+## E15: Hitting −14 LUFS without peaks over −1 dB
+- **Hypothesis:** single-pass `loudnorm=I=-14:TP=-1` is enough.
+- **Result:** the final MP4 measured −14.3 LUFS but a **true peak of +0.2 dBFS**. Adding a limiter at
+  −1.5 dB made the MP4 *worse* (+1.0 dBFS), even though the WAV mix measured −1.4 dBFS. The
+  overshoot came from **AAC encoding**: encoding the same mix at −1.5 / −2.5 dB gain gave
+  −2.5 / −3.0 dBFS in AAC.
+- **Change:** `alimiter` at −3 dB after `loudnorm`, before AAC.
+- **Result:** both exports measure **−14.5 LUFS, true peak −1.5 dBFS** (`ebur128=peak=true` on the MP4).
+- **Decision:** keep. Measure the *encoded* file, not the mix, because the codec changes the peaks.

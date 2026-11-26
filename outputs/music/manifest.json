@@ -1,5 +1,5 @@
 {
-  "file": "outputs/music/placeholder_7cf13f561fec.wav",
-  "placeholder": true,
-  "duration_s": 120
+  "file": "outputs/music/score_chosen.wav",
+  "placeholder": false,
+  "duration_s": 70.0
 }

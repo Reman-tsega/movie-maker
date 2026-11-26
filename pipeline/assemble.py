@@ -83,7 +83,7 @@ def build_audio(sb, rows, total, narr, music_file: Path, dst: Path) -> None:
              f"ratio={duck.get('ratio', 6)}:attack={duck.get('attack_ms', 300)}:"
              f"release={duck.get('release_ms', 1500)}[ducked]")
     f.append("[v_mix][ducked]amix=inputs=2:normalize=0,loudnorm=I=-14:TP=-1:LRA=11,"
-             "aresample=48000[out]")
+             "alimiter=limit=0.708:level=disabled,aresample=48000[out]")  # E15: single-pass loudnorm overshot to +0.2 dB
     args += ["-filter_complex", ";".join(f), "-map", "[out]", "-c:a", "pcm_s16le", str(dst)]
     run(args)
 

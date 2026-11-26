@@ -37,7 +37,7 @@
     "style_instruction": ""
   },
   "music": {
-    "chosen_track": null,
+    "chosen_track": "outputs/music/score_chosen.wav",
     "caption": "gentle instrumental children's folk lullaby, Ethiopian krar and soft masenqo, light hand percussion, warm acoustic texture, playful then calm, no vocals",
     "bpm": 84,
     "key": "C major",
