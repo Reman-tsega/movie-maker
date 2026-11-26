@@ -108,3 +108,15 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
 - **Result:** the frame at 0.5 s shows the rabbit, at 5 s the tortoise; one-character shots are unchanged.
 - **Decision:** keep. The rule lives in `assemble.py` but is driven by the storyboard, so a new
   two-character shot gets it automatically.
+
+## E13: Choosing the score from three ACE-Step candidates
+- **Hypothesis:** the caption "gentle instrumental children's folk lullaby, Ethiopian krar and soft
+  masenqo, light hand percussion …" (84 BPM, C major) gives an Ethiopian-sounding underscore.
+- **Change:** 3 seeds (11, 22, 33), 70 s each, ACE-Step 1.5 turbo with the LM planner off
+  (`thinking=False`, because BPM, key and length are fixed), on Kaggle CPU (≈ 11.5 min each, F9–F11).
+- **Result:** all three are instrumental and clean (−14.4 / −15.9 / −15.8 LUFS). A first-pass
+  description by `gemini-3-flash-preview` heard "synth keyboard and light percussion … not
+  Ethiopian" in all three. **The model ignored the krar and masenqo** in the caption. A likely
+  cause is little Ethiopian instrumentation in its training data; to test with a caption without
+  the instrument names.
+- **Choice:** _by ear, each candidate under the full ducked narration (A = seed 11, B = 22, C = 33)._
