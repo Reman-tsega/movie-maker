@@ -30,10 +30,10 @@
     "check_s": 7.08
   },
   "s06": {
-    "file": "outputs/shots/s06_40e88fb1c621.mp4",
-    "duration_s": 8.92,
+    "file": "outputs/shots/s06_80dd4f3f883f.mp4",
+    "duration_s": 8.05,
     "mode": "kenburns",
-    "check_s": 8.92
+    "check_s": 8.04
   },
   "s07": {
     "file": "outputs/shots/s07_83a63ceddbf6.mp4",
