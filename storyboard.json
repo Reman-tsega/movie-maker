@@ -323,7 +323,7 @@
   "end_card": {
     "lines": [
       "Made with AI",
-      "Images: FLUX on Cloudflare Workers AI · Motion: Wan 2.2 · Music: ACE-Step 1.5 · Voice: Gemini TTS",
+      "Images: FLUX.2 klein (Cloudflare Workers AI) · Voice: Gemini 3.8 Flash TTS · Music: ACE-Step 1.5 · Motion & edit: FFmpeg",
       "A family story retold in Amharic"
     ],
     "duration_s": 4
