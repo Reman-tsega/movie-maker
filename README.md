@@ -21,6 +21,10 @@ its shot in `storyboard.json`) and only that item is regenerated through the API
 Outputs: `outputs/final/heritage_16x9_<hash>.mp4`, `outputs/final/heritage_9x16_<hash>.mp4`
 and `outputs/final/subtitles_en.srt`. Every model call is logged in `runs.jsonl`.
 
+Every stage is followed by its validator; `make check` re-runs all of them (144 checks).
+If the first Gemini key's daily quota runs out, the run asks before using `GEMINI_API_KEY_2`
+(non-interactive: set `MM_FALLBACK_KEY=yes` or `no`).
+
 Other targets: `make smoke` (one call per provider), `make radio` (narration on black, for
 user testing), `make refs` (character reference sheets only).
 

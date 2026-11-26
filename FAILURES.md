@@ -111,3 +111,20 @@ Format: what broke, what I tried, what fixed it.
   final renders). History rewritten, bundle now 36 MB. Rewriting the history deleted the local
   renders again (like F7); `shots.py` and `assemble.py` rebuilt them from the cache in under a
   minute, with no API calls, which shows the claim holds.
+
+## F13: Noise at every scene transition: a WAV inside a WAV (26 Nov)
+- **Reported by:** me, watching the final candidate: a short noise between scenes.
+- **Measured:** all 10 narration files started with the same sample value (18770 = bytes "RI") and
+  ended with a −4 dB burst in their last 50 ms.
+- **Cause:** `gemini-3.8-flash-tts` returns a **complete WAV** (header + PCM + a **C2PA** content-credentials
+  chunk, 7.6 KB), while the older TTS models return raw PCM. My code wrapped every response in a new WAV
+  header, so the inner 44-byte header played as a **click** at each line start and the C2PA chunk as
+  **~0.16 s of noise** at each line end, right at the cuts.
+- **Fixed:** (1) `save_audio()` writes a WAV response as returned, so the **C2PA provenance stays intact**
+  in the file (as ETHICS.md promises) but is never decoded as audio; raw PCM still gets a header. (2)
+  `unwrap_if_nested()` repaired the 10 existing files **from the cache, with no API call** (line ends now
+  −70 to −90 dB). (3) An audio **tuner** in assembly (70 Hz high-pass, 10 ms fade-in, 60 ms fade-out per
+  line, set in `storyboard.json` → `audio_tuning`) so no line can click at a cut. (4) Two validator
+  checks that fail the build if it happens again (EXPERIMENTS E18).
+- **Lesson:** "the same API" changed its response format between model versions. Check the bytes,
+  not the docs.

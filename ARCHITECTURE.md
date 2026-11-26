@@ -71,3 +71,26 @@ outline; raised (`MarginV`) in vertical to stay clear of the platform buttons.
 
 `runs.jsonl`: one JSON line per model call or cache hit: `ts, stage, shot, model, params, seed,
 latency_s, gpu_s, cost_usd_list_equiv, cache_hit, status, output, error`.
+
+## Validators (one per stage)
+`pipeline/validators.py <stage|all>` runs after each stage in `make film`; any FAIL exits non-zero
+and stops the run. 144 checks today, including regression tests for real failures (F4 speaking
+rate, F13 nested WAV and line-edge noise, E15 true peak). Results are logged as `validate:<stage>`.
+
+## Audio tuner
+Before mixing, each narration line goes through `audio_tuning` from the storyboard: a high-pass
+(rumble), a short fade-in and a fade-out, so no line can click at a cut (F13).
+
+## API keys and quota
+Gemini TTS has two keys (two Google projects, separate daily quotas). Order: same model on key 1 →
+same model on key 2 → next model. Before the first use of key 2, the run **asks** (interactive) or
+follows `MM_FALLBACK_KEY=yes|no` (non-interactive, default yes); the decision is logged.
+
+## Delivery tags and timing
+Per-shot `delivery` tags (`[warm, calm storyteller]`) are sent before the line and are not spoken
+(E14). `timing.lead_s` and `timing.pad_after_s` set where narration starts and how long a shot
+holds after it. 0.4 s crossfades keep the cut points (and the narration sync) unchanged (E16).
+
+## What is committed
+API and GPU outputs (narration WAVs with C2PA, keyframes, the chosen score, `runs.jsonl`) are
+committed; FFmpeg outputs (shot clips, final renders) are rebuilt exactly by `make film` (F12).

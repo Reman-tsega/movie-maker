@@ -73,7 +73,12 @@ def build_audio(sb, rows, total, narr, music_file: Path, dst: Path) -> None:
     n = len(rows)
     f = []
     for i, r in enumerate(rows):
-        f.append(f"[{i}]aresample=48000,aformat=channel_layouts=stereo,adelay={int(LEAD * 1000)}:all=1,"
+        tune = sb.get("audio_tuning", {})
+        hp, fi, fo = tune.get("highpass_hz", 0), tune.get("fade_in_ms", 0) / 1000, tune.get("fade_out_ms", 0) / 1000
+        tuner = (f"highpass=f={hp}," if hp else "") + (f"afade=t=in:d={fi}," if fi else "") + \
+                (f"afade=t=out:st={max(r['narr_s'] - fo, 0):.3f}:d={fo}," if fo else "")
+        # the tuner runs on each line before it is placed on the timeline (F13 follow-up)
+        f.append(f"[{i}]aresample=48000,aformat=channel_layouts=stereo,{tuner}adelay={int(LEAD * 1000)}:all=1,"
                  f"apad,atrim=duration={r['dur']}[n{i}]")
     f.append("".join(f"[n{i}]" for i in range(n)) + f"concat=n={n}:v=0:a=1,apad,atrim=duration={total}[voice]")
     f.append("[voice]asplit=2[v_mix][v_key]")

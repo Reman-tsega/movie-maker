@@ -1,62 +1,62 @@
 1
-00:00:00,300 --> 00:00:05,551
+00:00:00,300 --> 00:00:05,390
 On a bright, sunny day, a rabbit and a
 tortoise began a race.
 
 2
-00:00:06,250 --> 00:00:09,181
+00:00:06,090 --> 00:00:08,860
 As the race began, the rabbit ran very
 fast,
 
 3
-00:00:11,250 --> 00:00:15,751
+00:00:11,090 --> 00:00:15,430
 and when she looked back, the tortoise
 was still far behind.
 
 4
-00:00:16,450 --> 00:00:21,111
+00:00:16,130 --> 00:00:20,630
 Proud of her speed, the rabbit thought,
 "I have plenty of time."
 
 5
-00:00:21,810 --> 00:00:31,701
+00:00:21,330 --> 00:00:31,060
 She lay down under a big tree for a
 short rest, but she fell fast asleep.
 
 6
-00:00:32,400 --> 00:00:38,424
+00:00:31,760 --> 00:00:37,656
 Meanwhile, the tortoise kept going,
 without stopping and without hurrying,
 
 7
-00:00:38,424 --> 00:00:39,971
+00:00:37,656 --> 00:00:39,170
 with steady effort.
 
 8
-00:00:40,670 --> 00:00:44,491
+00:00:39,870 --> 00:00:43,530
 When the rabbit woke up, it was already
 very late.
 
 9
-00:00:45,670 --> 00:00:49,931
+00:00:44,870 --> 00:00:48,970
 The tortoise was already near the finish
 line.
 
 10
-00:00:50,670 --> 00:00:55,347
+00:00:49,870 --> 00:00:54,422
 The rabbit ran with all her strength,
 but she could not get there first. The
 
 11
-00:00:55,347 --> 00:00:56,701
+00:00:54,422 --> 00:00:55,740
 tortoise won the race.
 
 12
-00:00:57,400 --> 00:01:05,400
+00:00:56,440 --> 00:01:04,296
 Speed alone is not enough. Steady
 effort, patience and focus lead to
 
 13
-00:01:05,400 --> 00:01:06,341
+00:01:04,296 --> 00:01:05,220
 success.
 

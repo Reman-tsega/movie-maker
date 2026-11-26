@@ -354,6 +354,28 @@
         }
       },
       "description": "Narration starts lead_s into each shot; a shot lasts at least narration + pad_after_s."
+    },
+    "audio_tuning": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Per-line narration clean-up before mixing (the 'tuner'): rumble filter and micro-fades so no line can click at a cut.",
+      "properties": {
+        "highpass_hz": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 200
+        },
+        "fade_in_ms": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 200
+        },
+        "fade_out_ms": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 400
+        }
+      }
     }
   }
 }

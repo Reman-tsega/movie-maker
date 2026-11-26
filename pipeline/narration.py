@@ -11,6 +11,8 @@ import sys
 import time
 import wave
 
+from pathlib import Path
+
 import requests
 
 from common import (OUT, Retryable, check_http, input_hash, load_env, load_storyboard,
@@ -53,23 +55,73 @@ class DailyQuota(Exception):
     pass
 
 
+_KEY2_DECISION: bool | None = None
+
+
+def allow_secondary_key() -> bool:
+    """Ask once per run before spending the secondary key (a different Google project).
+    Non-interactive runs (make, CI) follow MM_FALLBACK_KEY=yes|no (default yes); the decision is logged."""
+    global _KEY2_DECISION
+    if _KEY2_DECISION is None:
+        env = os.environ.get("MM_FALLBACK_KEY", "").lower()
+        if env in ("yes", "no"):
+            _KEY2_DECISION = env == "yes"
+        elif sys.stdin.isatty():
+            ans = input("  ? GEMINI_API_KEY's daily TTS quota is spent. Use the secondary key "
+                        "GEMINI_API_KEY_2 (separate project quota)? [Y/n] ").strip().lower()
+            _KEY2_DECISION = ans in ("", "y", "yes")
+        else:
+            _KEY2_DECISION = True
+        log_call("narration", "key-switch", status="ok" if _KEY2_DECISION else "fallback",
+                 params={"use_secondary_key": _KEY2_DECISION, "source": env or ("prompt" if sys.stdin.isatty() else "default")})
+        print(f"  secondary key {'enabled' if _KEY2_DECISION else 'declined'}")
+    return _KEY2_DECISION
+
+
 def tts_any(models: list[str], voice: str, style: str, text: str):
     """Try each TTS model in order; a model whose free daily quota is spent is skipped (each
-    Gemini model has its own quota, found in FAILURES F3)."""
+    Gemini model has its own quota, found in FAILURES F3). Before moving to the secondary key the
+    user is asked once (allow_secondary_key)."""
     errors = []
     keys = [k for k in (os.environ.get("GEMINI_API_KEY"), os.environ.get("GEMINI_API_KEY_2")) if k]
-    # each (key's project, model) pair has its own daily quota: same model on the next key first,
-    # so the voice stays the same; a different model only when every key is spent
-    for m, (ki, key) in ((m, k) for m in models for k in enumerate(keys)):
-        try:
-            return m, tts(m, voice, style, text, key=key)
-        except RuntimeError as e:
-            msg = str(e)
-            if "429" in msg and "per day" in msg.lower() or "PerDay" in msg:
-                errors.append(f"{m} (key {ki + 1}): daily quota spent")
-                continue
-            raise
+    # same model on the next key first, so the voice stays the same; another model only when
+    # every allowed key is spent for this model
+    for m in models:
+        for ki, key in enumerate(keys):
+            if ki > 0 and not allow_secondary_key():
+                break
+            try:
+                return m, tts(m, voice, style, text, key=key)
+            except RuntimeError as e:
+                msg = str(e)
+                if "429" in msg and "per day" in msg.lower() or "PerDay" in msg:
+                    errors.append(f"{m} (key {ki + 1}): daily quota spent")
+                    print(f"  ! {m} key {ki + 1}: daily quota spent")
+                    continue
+                raise
     raise DailyQuota("; ".join(errors))
+
+def save_audio(path, payload: bytes) -> None:
+    """Gemini 3.8 TTS returns a complete WAV (header + PCM + a C2PA provenance chunk); older TTS
+    models return raw 16-bit PCM. Wrapping a WAV in a second header made the inner header play as a
+    click and the C2PA chunk as ~0.16 s of noise at every line boundary (FAILURES F13). A WAV is
+    written as returned (provenance intact, never played as audio); raw PCM gets a header."""
+    if payload[:4] == b"RIFF":
+        Path(path).write_bytes(payload)
+        return
+    with wave.open(str(path), "wb") as w:
+        w.setnchannels(1); w.setsampwidth(2); w.setframerate(SAMPLE_RATE); w.writeframes(payload)
+
+
+def unwrap_if_nested(path) -> bool:
+    """Repair a file saved before the F13 fix: if the audio data itself starts with 'RIFF', the real
+    WAV (with its C2PA chunk) is inside; write it back out. No API call needed."""
+    with wave.open(str(path), "rb") as w:
+        data = w.readframes(w.getnframes())
+    if data[:4] != b"RIFF":
+        return False
+    Path(path).write_bytes(data)
+    return True
 
 
 def split_batch(pcm: bytes, n: int, expected_chars: list[int]) -> list[bytes] | None:
@@ -115,8 +167,7 @@ def batch_generate(models, voice, style, shots, out_dir):
     paths = {}
     for s, seg in zip(shots, segs):
         p = out_dir / f"{s['id']}_{input_hash(used, voice, style, spoken(s))}.wav"
-        with wave.open(str(p), "wb") as w:
-            w.setnchannels(1); w.setsampwidth(2); w.setframerate(SAMPLE_RATE); w.writeframes(seg)
+        save_audio(p, seg)
         paths[s["id"]] = (p, used)
     print(f"  batch: {len(shots)} lines in one call with {used} ({time.time() - t0:.1f}s)")
     return paths
@@ -150,6 +201,8 @@ def main() -> int:
         hit = cached_file(shot)
         if hit:
             path, used = hit
+            if unwrap_if_nested(path):
+                print(f"  {shot['id']}: repaired nested WAV header + C2PA chunk (F13)")
             log_call("narration", used, shot=shot["id"], cache_hit=True, output=str(path.relative_to(OUT.parent)))
             print(f"  {shot['id']}: cached ({used})")
         else:
@@ -162,11 +215,7 @@ def main() -> int:
                 print(f"  {shot['id']}: FAILED {e}")
                 return 1
             path = out_dir / f"{shot['id']}_{input_hash(used, voice, style, spoken(shot))}.wav"
-            with wave.open(str(path), "wb") as w:
-                w.setnchannels(1)
-                w.setsampwidth(2)
-                w.setframerate(SAMPLE_RATE)
-                w.writeframes(pcm)
+            save_audio(path, pcm)
             log_call("narration", used, shot=shot["id"], latency_s=time.time() - t0,
                      status="ok" if used == models[0] else "fallback",
                      params={"voice": voice, "chars": len(shot["narration"])},

@@ -1,92 +1,92 @@
 [
   {
     "id": "s01",
-    "duration_s": 5.251,
+    "duration_s": 5.09,
     "languages": [
       "amh"
     ],
-    "transcript": "በአንድ ፀሀይ ያማ ቀን ጥንቸልና ኤሊ የሩጫ ውድድር ጀመሩ",
+    "transcript": "በአንድ ፀሀያማ ቀን ጥንቸልና ኤሊ የሩጫ ውድድር ጀመሩ።",
     "flags": []
   },
   {
     "id": "s02",
-    "duration_s": 2.931,
+    "duration_s": 2.77,
     "languages": [
       "amh"
     ],
-    "transcript": "ውድድሩ ሲጀምር ጥንቸል በፍጥነት ሮጠች",
+    "transcript": "ውድድሩ ሲጀምር ጥንቸል በፍጥነት ሮጠች።",
     "flags": []
   },
   {
     "id": "s03",
-    "duration_s": 4.501,
+    "duration_s": 4.34,
     "languages": [
       "amh"
     ],
-    "transcript": "ወደኋላም ስትመለከት ኤሊ ገና በጣም ሩቅ ነበረች",
+    "transcript": "ወደኋላም ስትመለከት ኤሊ ገና በጣም ሩቅ ነበረች።",
     "flags": []
   },
   {
     "id": "s04",
-    "duration_s": 5.041,
+    "duration_s": 4.5,
     "languages": [
       "amh"
     ],
-    "transcript": "ጥንቸል በፍጥነቷ በመኩራት ጊዜ አለኝ ብላ አሰበች",
+    "transcript": "ጥንቸል በፍጥነቷ በመኮራራት ጊዜ አለኝ ብላ አሰበች።",
     "flags": []
   },
   {
     "id": "s05",
-    "duration_s": 9.891,
+    "duration_s": 9.73,
     "languages": [
       "amh"
     ],
-    "transcript": "ጥንቸል በአንድ ትልቅ ዛፍ ጥላ ስር ትንሽ ልረፍ ብላ ተኛች ነገር ግን ጥልቅ እንቅልፍ ወሰዳት",
+    "transcript": "ጥንቸል በአንድ ትልቅ ዛፍ ጥላ ስር ትንሽ ልረፍ ብላ ተኛች፤ ነገር ግን ጥልቅ እንቅልፍ ወሰዳት።",
     "flags": []
   },
   {
     "id": "s06",
-    "duration_s": 7.571,
+    "duration_s": 7.41,
     "languages": [
       "amh"
     ],
-    "transcript": "በዚህ ጊዜ ኤሊ ሳትቆም ሳትቸኩል በትጋት ወደፊት መጓዟን ቀጠለች",
+    "transcript": "በዚህ ጊዜ ኤሊ ሳታቆም ሳትቸኩል በትጋት ወደፊት መጓዟን ቀጠለች።",
     "flags": []
   },
   {
     "id": "s07",
-    "duration_s": 3.821,
+    "duration_s": 3.66,
     "languages": [
       "amh"
     ],
-    "transcript": "ጥንቸል ከእንቅልፏ ስትነቃ ጊዜው በጣም ረፍዶ ነበር",
+    "transcript": "ጥንቸል ከእንቅልፏ ስትነቃ ጊዜው በጣም ረፍዶ ነበር።",
     "flags": []
   },
   {
     "id": "s08",
-    "duration_s": 4.261,
+    "duration_s": 4.1,
     "languages": [
       "amh"
     ],
-    "transcript": "ኤሊ የመጨረሻው መስመር አጠገብ ደርሳ ነበር",
+    "transcript": "ኤሊ የመጨረሻው መስመር አጠገብ ደርሳ ነበር።",
     "flags": []
   },
   {
     "id": "s09",
-    "duration_s": 6.031,
+    "duration_s": 5.87,
     "languages": [
       "amh"
     ],
-    "transcript": "ጥንቸል በሙሉ ኃይሏ ብትሮጥም ቀድማ መድረስ አልቻለችም ኤሊ ውድድሩን አሸነፈች",
+    "transcript": "ጥንቸል በሙሉ ኃይሏ ብትሮጥም ቀድማ መድረስ አልቻለችም። ኤሊ ውድድሩን አሸነፈች።",
     "flags": []
   },
   {
     "id": "s10",
-    "duration_s": 8.941,
+    "duration_s": 8.78,
     "languages": [
       "amh"
     ],
-    "transcript": "ፍጥነት ብቻ በቂ አይደለም ቀጣይነት ያለው ትጋት ትዕግስት እና ትኩረት ለስኬት ያበቃል",
+    "transcript": "ፍጥነት ብቻ በቂ አይደለም። ቀጣይነት ያለው ትጋት፣ ትዕግስትና ትኩረት ለስኬት ያበቃል።",
     "flags": []
   }
 ]

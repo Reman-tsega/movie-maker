@@ -331,5 +331,10 @@
   "timing": {
     "lead_s": 0.3,
     "pad_after_s": 0.7
+  },
+  "audio_tuning": {
+    "highpass_hz": 70,
+    "fade_in_ms": 10,
+    "fade_out_ms": 60
   }
 }

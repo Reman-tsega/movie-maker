@@ -178,3 +178,17 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
 - **Decision:** the brief's "three attempts per shot, then take the best" rule. Attempt 2 restored
   **from the cache, with no API call**. Known small inconsistency: no shawl in s09. Practice note: the
   attempt limit beat my instinct to keep re-rolling until it was perfect.
+
+## E18: Validators after every stage
+- **Hypothesis:** checks after each stage stop bad outputs before the next stage uses them, and turn
+  past failures into regression tests.
+- **Change:** `pipeline/validators.py`, run by `make film` after each stage (and `make check` for all):
+  storyboard (schema, length, subtitle size), narration (nested WAV, 24 kHz, length, not silent,
+  ≤ 1.2 s/word, clean last 50 ms, transcription flags), keyframes (references present, 1024², not
+  blank), shots (length matches the timeline, 1024², 24 fps), music (chosen, ≥ 30 s, sane loudness),
+  assembly (resolution, audio, 60–90 s, −14 ±1 LUFS, true peak ≤ −1 dBFS, subtitle cues). Each run
+  logs a `validate:<stage>` line.
+- **Result:** 144/144 checks pass on the current film. **Regression test:** re-wrapping one narration
+  file the old way (the F13 bug) in a scratch copy → `validate narration: 69/71`, the two F13 checks
+  FAIL, exit code 1, and the pipeline stops.
+- **Decision:** keep; every new failure should add a check.

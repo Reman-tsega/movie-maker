@@ -10,7 +10,7 @@ import time
 import wave
 
 from common import OUT, input_hash, load_env, load_storyboard, log_call, run
-from narration import SAMPLE_RATE, tts
+from narration import SAMPLE_RATE, save_audio, tts
 
 
 def main() -> int:
@@ -39,8 +39,7 @@ def main() -> int:
                     log_call("tts_compare", model, shot=sid, status="error", error=err, params={"voice": voice})
                     print(f"  {model}/{voice} {sid}: FAILED {err}")
                     continue
-                with wave.open(str(p), "wb") as w:
-                    w.setnchannels(1); w.setsampwidth(2); w.setframerate(SAMPLE_RATE); w.writeframes(pcm)
+                save_audio(p, pcm)
                 log_call("tts_compare", model, shot=sid, latency_s=time.time() - t0,
                          params={"voice": voice}, output=str(p.relative_to(OUT.parent)))
             parts.append(p)
