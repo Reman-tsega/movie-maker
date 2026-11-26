@@ -9,7 +9,7 @@
 - **Vertical master (9:16):** `outputs/final/heritage_9x16_<hash>.mp4`, 720×1280, 69.6 s, −14.5 LUFS / −1.5 dBTP
 - **Horizontal master (16:9):** `outputs/final/heritage_16x9_<hash>.mp4`, 1280×720, 69.6 s, −14.5 LUFS / −1.5 dBTP
 - **Subtitles:** `outputs/final/subtitles_en.srt`
-- **Public post:** https://youtube.com/shorts/GlGOu8khYUc (AI label on) ·
+- **Public post (primary):** https://lnkd.in/p/eQFqueZX (LinkedIn) · also on YouTube Shorts: https://youtube.com/shorts/GlGOu8khYUc (AI label on) ·
   **Film files:** https://drive.google.com/drive/folders/1m1z7Ug0wlr6v-WjR0Pk4qgK7SySBNioZ
 
 **What the pipeline does:** `storyboard.json` (validated by a JSON Schema) → **script** (screenplay +

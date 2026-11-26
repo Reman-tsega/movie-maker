@@ -8,7 +8,8 @@
 
 ## Labelling
 - The film ends with a 4-second **"Made with AI"** end card that names each model.
-- **Posted** as a YouTube Short (https://youtube.com/shorts/GlGOu8khYUc) with YouTube's "Altered or synthetic content" disclosure switched on.
+- **Primary post: LinkedIn** (https://lnkd.in/p/eQFqueZX). LinkedIn has no AI toggle for video, so the post text states that the film was made with AI, and the end card says "Made with AI".
+- **Also posted** as a YouTube Short (https://youtube.com/shorts/GlGOu8khYUc) with YouTube's "Altered or synthetic content" disclosure switched on.
 - Model watermarks and metadata are left intact. No step strips SynthID or C2PA data. Each narration WAV keeps the **C2PA content-credentials chunk** Gemini embeds (FAILURES F13: it is stored, never played).
 
 ## Licences (every model, tool and output)
