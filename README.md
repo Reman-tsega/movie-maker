@@ -13,6 +13,11 @@ cp .env.example .env       # add GEMINI_API_KEY, CF_ACCOUNT_ID, CF_API_TOKEN
 make film                  # validate → narration → keyframes → shots → music → assemble
 ```
 
+**Tested from a clean clone (26 Nov):** `make film` rebuilt both versions in **58 s with 0 new
+image or voice calls**. The committed narration, keyframes and chosen score are cache hits, and
+only the FFmpeg stages run. Delete a file in `outputs/narration/` or `outputs/keyframes/` (or edit
+its shot in `storyboard.json`) and only that item is regenerated through the API.
+
 Outputs: `outputs/final/heritage_16x9_<hash>.mp4`, `outputs/final/heritage_9x16_<hash>.mp4`
 and `outputs/final/subtitles_en.srt`. Every model call is logged in `runs.jsonl`.
 
