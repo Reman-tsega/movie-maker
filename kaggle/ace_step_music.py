@@ -60,34 +60,31 @@ def main() -> int:
     params = GenerationParams(caption=m["caption"], lyrics="[Instrumental]", instrumental=True,
                               bpm=m.get("bpm"), keyscale=m.get("key", ""), duration=args.duration,
                               thinking=False)
-    config = GenerationConfig(batch_size=len(seeds), use_random_seed=False, seeds=seeds,
-                              audio_format="wav")
-    t1 = time.time()
-    result = generate_music(dit, llm, params, config, save_dir=str(out / "raw"))
-    gen_s = time.time() - t1
-    rec_base = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "stage": "music", "shot": None,
-                "model": f"ACE-Step-1.5 acestep-v15-turbo ({args.device})", "cost_usd_list_equiv": 0.0,
-                "cache_hit": False}
-    with log.open("a", encoding="utf-8") as f:
-        if not result.success:
-            f.write(json.dumps({**rec_base, "status": "error", "error": str(result.error)[:300],
-                                "latency_s": round(gen_s, 1), "gpu_s": round(gen_s, 1)}) + "\n")
-            print("FAILED:", result.error)
-            return 1
-        for a in result.audios:
-            seed = a["params"].get("seed")
+    rec_base = {"stage": "music", "shot": None, "cost_usd_list_equiv": 0.0, "cache_hit": False,
+                "model": f"ACE-Step-1.5 acestep-v15-turbo ({args.device})"}
+    done = 0
+    for seed in seeds:  # one at a time: a slow CPU run can't lose the other candidates (FAILURES F11)
+        config = GenerationConfig(batch_size=1, use_random_seed=False, seeds=[seed], audio_format="wav")
+        t1 = time.time()
+        result = generate_music(dit, llm, params, config, save_dir=str(out / "raw"))
+        gen_s = time.time() - t1
+        rec = {**rec_base, "ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "seed": seed,
+               "latency_s": round(gen_s, 1), "gpu_s": round(gen_s, 1) if args.device == "cuda" else 0.0,
+               "params": {"caption": m["caption"], "bpm": m.get("bpm"), "key": m.get("key"),
+                          "duration_s": args.duration, "batch": 1, "model_load_s": round(load_s, 1)}}
+        with log.open("a", encoding="utf-8") as f:
+            if not result.success:
+                f.write(json.dumps({**rec, "status": "error", "error": str(result.error)[:300]}) + "\n")
+                print(f"seed {seed} FAILED after {gen_s:.0f}s: {result.error}")
+                continue
             dst = out / f"score_seed{seed}.wav"
-            shutil.copy(a["path"], dst)
-            f.write(json.dumps({**rec_base, "status": "ok", "seed": seed,
-                                "params": {"caption": m["caption"], "bpm": m.get("bpm"),
-                                           "key": m.get("key"), "duration_s": args.duration,
-                                           "batch": len(seeds), "model_load_s": round(load_s, 1)},
-                                "latency_s": round(gen_s / len(seeds), 1),
-                                "gpu_s": round(gen_s / len(seeds), 1) if args.device == "cuda" else 0.0,
-                                "output": str(dst.relative_to(REPO))}, ensure_ascii=False) + "\n")
-            print(f"seed {seed} -> {dst.relative_to(REPO)}")
-    print(f"{len(result.audios)} candidates in {gen_s:.0f}s (GPU)")
-    return 0
+            shutil.copy(result.audios[0]["path"], dst)
+            f.write(json.dumps({**rec, "status": "ok", "output": str(dst.relative_to(REPO))},
+                               ensure_ascii=False) + "\n")
+            done += 1
+            print(f"seed {seed} -> {dst.relative_to(REPO)} in {gen_s:.0f}s", flush=True)
+    print(f"{done}/{len(seeds)} candidates done")
+    return 0 if done else 1
 
 
 if __name__ == "__main__":

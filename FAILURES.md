@@ -93,3 +93,12 @@ Format: what broke, what I tried, what fixed it.
   ACE-Step's docs recommend, then `uv run python ...`; downloads use `hf download`.
 - **Lesson:** the brief warned that tools move faster than the instructions. Two of the commands
   I wrote two days ago from the official READMEs were already broken.
+
+## F11: ACE-Step on CPU hit its own 10-minute generation timeout (26 Nov)
+- **Broke:** with the Python and `hf` fixes (F10), ACE-Step installed, loaded in 19 s and started
+  diffusion on CPU. A batch of 3 × 75 s then exceeded ACE-Step's internal `service_generate`
+  timeout of 600 s ("This usually means the GPU ran out of VRAM": misleading on CPU).
+- **Found:** the timeout comes from the `ACESTEP_GENERATION_TIMEOUT` environment variable
+  (`acestep/core/generation/handler/generate_music_execute.py`).
+- **Fixed:** timeout raised to 5400 s, and candidates generated **one at a time** (batch 1), each
+  saved and logged as soon as it is done, so a slow or failed seed doesn't lose the others.

@@ -29,7 +29,8 @@ if JOB == "music":
     sh(f"cd {W}/ACE-Step-1.5 && uv sync -q 2>&1 | tail -5")
     # huggingface-cli was retired; the replacement is `hf`
     sh(f"hf download ACE-Step/Ace-Step1.5 --local-dir {W}/ACE-Step-1.5/checkpoints > /dev/null")
-    rc = sh(f"cd {W}/ACE-Step-1.5 && uv run python {repo}/kaggle/ace_step_music.py {ARGS}")
+    # ACE-Step aborts a generation after 600 s by default; CPU needs longer (FAILURES F11)
+    rc = sh(f"cd {W}/ACE-Step-1.5 && ACESTEP_GENERATION_TIMEOUT=5400 uv run python {repo}/kaggle/ace_step_music.py {ARGS}")
 elif JOB == "wan":
     sh(f"cd {W} && git clone -q https://github.com/Wan-Video/Wan2.2.git")
     sh(f"cd {W}/Wan2.2 && grep -v flash_attn requirements.txt > req.txt && pip install -q -r req.txt 2>&1 | tail -3")
