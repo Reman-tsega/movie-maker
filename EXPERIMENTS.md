@@ -156,3 +156,25 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
 - **Change:** `alimiter` at −3 dB after `loudnorm`, before AAC.
 - **Result:** both exports measure **−14.5 LUFS, true peak −1.5 dBFS** (`ebur128=peak=true` on the MP4).
 - **Decision:** keep. Measure the *encoded* file, not the mix, because the codec changes the peaks.
+
+## E16: Smoother camera and softer cuts (from user test 2)
+- **Hypothesis:** the "stiff / jerky" feel comes from constant-speed moves that start and stop
+  abruptly, and from hard cuts.
+- **Change:** (1) Ken Burns zoom and drift follow a cosine ease, `(1-cos(PI*p))/2`, instead of `p`.
+  (2) The vertical two-character pan uses the same ease. (3) 0.4 s `xfade` crossfades between
+  shots: each clip except the last runs 0.4 s longer and fades into the next *at the original cut
+  time*.
+- **Result:** the total stays exactly 70.7 s, so the narration sync is unchanged; a frame 0.2 s
+  after the s01→s02 cut shows both shots blended. Loudness is unchanged (−14.5 LUFS, −1.5 dBTP).
+- **Decision:** keep. A cut-preserving crossfade needed the timeline maths, but no timing change elsewhere.
+
+## E17: s09, "make the turtle look extra happy when she wins" (a 9-year-old's request)
+- **Attempt 1** ("beaming with joy … crossing the ribbon"): a mild smile, and the ribbon not visible.
+- **Attempt 2** ("breaking through a red ribbon … across her chest, mouth open in a huge joyful
+  smile, eyes closed with happiness"): **ribbon and joy right**, rabbit behind; but her white tibeb
+  shawl is missing.
+- **Attempt 3** (attempt 2 plus "her white shawl … clearly draped over her shell"): the tortoise
+  disappeared; only the rabbit was left. The longer prompt diluted the main subject.
+- **Decision:** the brief's "three attempts per shot, then take the best" rule. Attempt 2 restored
+  **from the cache, with no API call**. Known small inconsistency: no shawl in s09. Practice note: the
+  attempt limit beat my instinct to keep re-rolling until it was perfect.

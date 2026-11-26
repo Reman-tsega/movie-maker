@@ -24,6 +24,7 @@ LEAD = 0.4
 PAD_AFTER_NARRATION = 1.0   # default; storyboard timing.pad_after_s overrides
 FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 ASPECTS = {"16x9": (1280, 720), "9x16": (720, 1280)}
+XF = 0.4  # crossfade between shots (user test 2: cuts felt "abrupt")
 
 
 def timeline(sb, narr):
@@ -125,12 +126,20 @@ def build_video(sb, rows, total, shots, aspect, audio: Path, srt: Path, dst: Pat
             # 9:16 cuts a square frame to its middle third; with two characters side by side one is
             # lost, so pan slowly from left to right across the whole frame instead (rough cut v1 review)
             if h > w and n_chars[r["id"]] > 1:
-                crop = f"crop={w}:{h}:x='(in_w-out_w)*min(t/{r['dur']},1)':y=0"
+                crop = f"crop={w}:{h}:x='(in_w-out_w)*(1-cos(PI*min(t/{r['dur']},1)))/2':y=0"
             else:
                 crop = f"crop={w}:{h}"
+            # every clip but the last runs XF seconds longer, overlapping the next one in a crossfade,
+            # so the cut points (and the narration timing) stay exactly where they were
+            extra = XF if i < len(rows) - 1 else 0
             f.append(f"[{i}]scale={max(w, h)}:{max(w, h)},{crop},setsar=1,fps={FPS},"
-                     f"tpad=stop_mode=clone:stop_duration=2,trim=duration={r['dur']},setpts=PTS-STARTPTS[v{i}]")
-        f.append("".join(f"[v{i}]" for i in range(len(rows))) + f"concat=n={len(rows)}:v=1:a=0[body]")
+                     f"tpad=stop_mode=clone:stop_duration=2,trim=duration={r['dur'] + extra},"
+                     f"setpts=PTS-STARTPTS[v{i}]")
+        prev = "v0"
+        for i in range(1, len(rows)):
+            out = "body" if i == len(rows) - 1 else f"x{i}"
+            f.append(f"[{prev}][v{i}]xfade=transition=fade:duration={XF}:offset={rows[i]['start']:.3f}[{out}]")
+            prev = out
     f.append(f"color=c=black:s={w}x{h}:r={FPS}:d={ec},{end_card_inputs(sb, w, h, tmp)},"
              f"fade=t=in:d=0.6[card]")
     f.append("[body][card]concat=n=2:v=1:a=0[joined]")

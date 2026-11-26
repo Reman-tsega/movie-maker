@@ -25,9 +25,11 @@ PAD_AFTER_NARRATION = 1.0   # default; storyboard timing.pad_after_s overrides
 def kenburns(src: Path, dst: Path, dur: float, zoom: list[float], pan: str) -> None:
     frames = int(round(dur * FPS))
     z0, z1 = zoom
-    z = f"{z0}+({z1}-{z0})*on/{max(frames - 1, 1)}"
+    # ease-in-out (cosine) instead of a constant speed: user test 2 found linear moves "stiff"
+    e = f"((1-cos(PI*on/{max(frames - 1, 1)}))/2)"
+    z = f"{z0}+({z1}-{z0})*{e}"
     cx, cy = "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
-    drift = f"(on/{max(frames - 1, 1)})*(iw-iw/zoom)/2"
+    drift = f"{e}*(iw-iw/zoom)/2"
     x, y = cx, cy
     if pan == "left":
         x = f"(iw-iw/zoom)/2+(iw-iw/zoom)/4-{drift}/2"

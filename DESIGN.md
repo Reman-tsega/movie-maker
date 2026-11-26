@@ -46,9 +46,21 @@ back from the cache with no API call.
 
 **Storyboard diff from this test:** the commit "User test 1 → storyboard: delivery tags, ትጋት, tighter timing".
 
-## User test 2: near-final cut
-_To do._
+## User test 2: near-final cut (score A, pictures, all test-1 changes), 26 Nov
+Shown on a phone (vertical cut) to three people from the audience: a friend, my sister and my
+little brother. The questions: who watched, what happened, what is the lesson, was anything unclear
+or confusing, and one thing to change. The answers below are as reported to me, summarised into
+the five-question format.
 
-| Who | What they said | What I changed |
-|---|---|---|
-| | | |
+| Who | Story / lesson in their words | Unclear or confusing | One change | What I changed |
+|---|---|---|---|---|
+| Yonas (friend, adult) | "Speed doesn't win on its own if you get careless; steady effort, patience, and focus get you across the line." | Narration "clear and easy to follow"; "camera pans feel a bit stiff/mechanical in a couple of spots." | "Smooth out the camera movement … transitions … a little less abrupt." | **Eased camera moves** (cosine ease-in-out instead of constant speed) in `shots.py`; **0.4 s crossfades** between shots in `assemble.py`, with the cut points unchanged so the narration stays in sync (E16). |
+| Hana (sister, adult) | "Consistent effort, patience, and paying attention matter more than just being fast at the start." | Nothing confusing; "some shots are mostly slow pans over fairly still scenes." | "A tiny bit more lively character motion during the race and nap moments." | Partly: a faster, bigger move on s02 (the race start). **Not done:** real character animation needs Wan 2.2 on a GPU, and every Kaggle GPU job stayed queued (FAILURES F9). |
+| Degem (little brother, about 9) | "The fast bunny ran ahead, fell asleep under a tree, and the slow turtle kept walking and won!" Lesson: "Don't sleep during a race and don't show off; keep going and you can win!" | Words easy; "when the camera slides sideways it looks a little funny/jerky." | "Make the bunny run a little faster at the start and make the turtle look extra happy when she wins!" | **s02:** zoom 1.0→1.25 with a pan right, so the start feels faster. **s09:** new keyframe, the tortoise **breaking the red ribbon with a huge joyful smile** (E17). Sideways pan in 9:16 is now eased. |
+
+**Did the film meet its intent?** Yes. The 9-year-old, the core audience, stated the lesson
+unprompted and in his own words ("don't show off; keep going and you can win"), and both adults
+named steady effort over speed. No one found the Amharic unclear after the voice change (E11) and
+the ትጋት rewording.
+
+**What I'd still change with more time:** real character motion (Wan 2.2 on a free GPU), as Hana asked.

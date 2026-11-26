@@ -115,10 +115,10 @@
         "mode": "wan",
         "zoom": [
           1.0,
-          1.08
+          1.25
         ],
         "pan": "right",
-        "prompt": "the rabbit runs quickly forward, camera tracks alongside, dust rises"
+        "prompt": "the rabbit dashes forward very fast, quick camera move to the right"
       },
       "delivery": "[lively and a little faster]",
       "narration": "ውድድሩ ሲጀምር ጥንቸል በፍጥነት ሮጠች፣",
@@ -273,13 +273,13 @@
       "id": "s09",
       "beat": "Too late to win",
       "shot_size": "wide",
-      "reason": "The climax: the rabbit's speed comes too late, and the tortoise crosses first.",
+      "reason": "The climax: the rabbit's speed comes too late, and the tortoise crosses first. The tortoise visibly happy at the win (user test 2: a 9-year-old asked for it).",
       "duration_s": 6,
       "characters": [
         "rabbit",
         "tortoise"
       ],
-      "image_prompt": "the tortoise crossing the ribbon finish line on the hilltop while the rabbit races up the hill behind her, too far back, golden light",
+      "image_prompt": "the tortoise breaking through a red ribbon finish line stretched between two wooden posts on the hilltop, the ribbon across her chest, mouth open in a huge joyful smile, eyes closed with happiness, while the small rabbit runs up the hill far behind her, golden light",
       "motion": {
         "mode": "wan",
         "zoom": [
