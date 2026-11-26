@@ -44,6 +44,11 @@ def tts(model: str, voice: str, style: str, text: str, key: str | None = None) -
     return with_retries(call, what=f"TTS {model}")
 
 
+def spoken(shot: dict) -> str:
+    """Exactly what is sent to the TTS: bracketed delivery tags (not spoken, E14) + the line."""
+    return f"{shot['delivery']} {shot['narration']}" if shot.get("delivery") else shot["narration"]
+
+
 class DailyQuota(Exception):
     pass
 
@@ -97,7 +102,7 @@ def split_batch(pcm: bytes, n: int, expected_chars: list[int]) -> list[bytes] | 
 
 def batch_generate(models, voice, style, shots, out_dir):
     """One call for all missing lines (saves daily quota: 1 request instead of len(shots))."""
-    text = "\n\n".join(s["narration"] for s in shots)
+    text = "\n\n".join(spoken(s) for s in shots)
     t0 = time.time()
     used, pcm = tts_any(models, voice, style, text)
     segs = split_batch(pcm, len(shots), [len(s["narration"]) for s in shots])
@@ -109,7 +114,7 @@ def batch_generate(models, voice, style, shots, out_dir):
         return None
     paths = {}
     for s, seg in zip(shots, segs):
-        p = out_dir / f"{s['id']}_{input_hash(used, voice, style, s['narration'])}.wav"
+        p = out_dir / f"{s['id']}_{input_hash(used, voice, style, spoken(s))}.wav"
         with wave.open(str(p), "wb") as w:
             w.setnchannels(1); w.setsampwidth(2); w.setframerate(SAMPLE_RATE); w.writeframes(seg)
         paths[s["id"]] = (p, used)
@@ -132,7 +137,7 @@ def main() -> int:
 
     def cached_file(shot):
         for m in (models[:1] if shot["id"] in redo else models):
-            p = out_dir / f"{shot['id']}_{input_hash(m, voice, style, shot['narration'])}.wav"
+            p = out_dir / f"{shot['id']}_{input_hash(m, voice, style, spoken(shot))}.wav"
             if p.exists():
                 return p, m
         return None
@@ -150,13 +155,13 @@ def main() -> int:
         else:
             t0 = time.time()
             try:
-                used, pcm = tts_any(models, voice, style, shot["narration"])
+                used, pcm = tts_any(models, voice, style, spoken(shot))
             except Exception as e:  # noqa: BLE001
                 log_call("narration", models[0], shot=shot["id"], latency_s=time.time() - t0,
                          status="error", error=str(e)[:300], params={"voice": voice})
                 print(f"  {shot['id']}: FAILED {e}")
                 return 1
-            path = out_dir / f"{shot['id']}_{input_hash(used, voice, style, shot['narration'])}.wav"
+            path = out_dir / f"{shot['id']}_{input_hash(used, voice, style, spoken(shot))}.wav"
             with wave.open(str(path), "wb") as w:
                 w.setnchannels(1)
                 w.setsampwidth(2)

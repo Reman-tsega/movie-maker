@@ -120,3 +120,13 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
   cause is little Ethiopian instrumentation in its training data; to test with a caption without
   the instrument names.
 - **Choice:** _by ear, each candidate under the full ducked narration (A = seed 11, B = 22, C = 33)._
+
+## E14: Bracketed delivery tags (from user test 1)
+- **Hypothesis (Bilkis's suggestion):** delivery cues make the voice less dull, if they aren't spoken.
+  E7 showed that a free-text English instruction *is* spoken.
+- **Change:** s04 sent as `[proudly, with a playful smile] ጥንቸል በፍጥነቷ በመኩራራት [short pause] «ጊዜ አለኝ» ብላ አሰበች።`
+  on `gemini-3.8-flash-tts`, then transcribed.
+- **Result:** transcript pure Amharic (tags not spoken); 5.21 s versus 4.66 s untagged, so the pause
+  is honoured; tone described as "narrative and expressive, typical of a storyteller."
+- **Decision:** a `delivery` field on every shot, plus inline `[short pause]` where needed. Practice
+  note: short bracket tags work where a sentence-long instruction failed (E7).

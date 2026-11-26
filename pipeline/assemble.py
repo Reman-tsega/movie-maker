@@ -21,15 +21,18 @@ from common import (OUT, ROOT, code_version, input_hash, load_storyboard, log_ca
 
 FPS = 24
 LEAD = 0.4
-PAD_AFTER_NARRATION = 1.0
+PAD_AFTER_NARRATION = 1.0   # default; storyboard timing.pad_after_s overrides
 FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 ASPECTS = {"16x9": (1280, 720), "9x16": (720, 1280)}
 
 
 def timeline(sb, narr):
+    global LEAD
+    LEAD = sb.get("timing", {}).get("lead_s", LEAD)
+    pad = sb.get("timing", {}).get("pad_after_s", PAD_AFTER_NARRATION)
     t, rows = 0.0, []
     for s in sb["shots"]:
-        d = round(max(s["duration_s"], narr[s["id"]]["duration_s"] + PAD_AFTER_NARRATION), 2)
+        d = round(max(s["duration_s"], narr[s["id"]]["duration_s"] + pad), 2)
         rows.append({"id": s["id"], "start": t, "dur": d, "narr_s": narr[s["id"]]["duration_s"],
                      "sub": s["subtitle_en"]})
         t += d

@@ -81,7 +81,7 @@
       "beat": "Start of the race",
       "shot_size": "wide",
       "reason": "Establishes the place, the two characters and the race before anything happens.",
-      "duration_s": 6,
+      "duration_s": 5,
       "characters": [
         "rabbit",
         "tortoise"
@@ -96,6 +96,7 @@
         "pan": "center",
         "prompt": "slow push-in, light breeze moves the grass"
       },
+      "delivery": "[warm, calm storyteller, gentle start]",
       "narration": "በአንድ ጸሐያማ ቀን ጥንቸል እና ኤሊ የሩጫ ውድድር ጀመሩ።",
       "subtitle_en": "On a bright, sunny day, a rabbit and a tortoise began a race.",
       "seed": 101
@@ -119,6 +120,7 @@
         "pan": "right",
         "prompt": "the rabbit runs quickly forward, camera tracks alongside, dust rises"
       },
+      "delivery": "[lively and a little faster]",
       "narration": "ውድድሩ ሲጀምር ጥንቸል በፍጥነት ሮጠች፣",
       "subtitle_en": "As the race began, the rabbit ran very fast,",
       "seed": 102
@@ -143,6 +145,7 @@
         "pan": "left",
         "prompt": "slow pull-back revealing the long trail"
       },
+      "delivery": "[curious, then lightly amused]",
       "narration": "ወደ ኋላም ስትመለከት ኤሊ ገና በጣም ሩቅ ነበረች።",
       "subtitle_en": "and when she looked back, the tortoise was still far behind.",
       "seed": 103
@@ -166,7 +169,8 @@
         "pan": "center",
         "prompt": "slow push-in on the face"
       },
-      "narration": "ጥንቸል በፍጥነቷ በመኩራራት «ጊዜ አለኝ» ብላ አሰበች።",
+      "delivery": "[proudly, with a playful smile]",
+      "narration": "ጥንቸል በፍጥነቷ በመኩራራት [short pause] «ጊዜ አለኝ» ብላ አሰበች።",
       "subtitle_en": "Proud of her speed, the rabbit thought, \"I have plenty of time.\"",
       "seed": 104
     },
@@ -175,7 +179,7 @@
       "beat": "The nap",
       "shot_size": "medium",
       "reason": "The turning point of the story: the decision to rest becomes a deep sleep.",
-      "duration_s": 7,
+      "duration_s": 6,
       "characters": [
         "rabbit"
       ],
@@ -189,6 +193,7 @@
         "pan": "center",
         "prompt": "the rabbit breathes slowly while sleeping, leaves sway gently, fixed camera"
       },
+      "delivery": "[slower and sleepy, soft voice]",
       "narration": "ጥንቸል በአንድ ትልቅ ዛፍ ጥላ ስር ትንሽ ልረፍ ብላ ተኛች፤ ነገር ግን ጥልቅ እንቅልፍ ወሰዳት።",
       "subtitle_en": "She lay down under a big tree for a short rest, but she fell fast asleep.",
       "seed": 105
@@ -198,7 +203,7 @@
       "beat": "Steady steps",
       "shot_size": "medium close-up",
       "reason": "The heart of the lesson: the tortoise keeps going, step by step, without stopping.",
-      "duration_s": 7,
+      "duration_s": 6,
       "characters": [
         "tortoise"
       ],
@@ -212,7 +217,8 @@
         "pan": "right",
         "prompt": "the tortoise takes slow steady steps forward, camera moves slowly with her"
       },
-      "narration": "በዚህ ጊዜ ኤሊ ሳትቆም፣ ሳትቸኩል እና ዲሲፕሊን ባለው እርምጃ ወደፊት መጓዟን ቀጠለች።",
+      "delivery": "[steady, even rhythm, calm determination]",
+      "narration": "በዚህ ጊዜ ኤሊ ሳትቆም፣ ሳትቸኩል፣ በትጋት ወደፊት መጓዟን ቀጠለች።",
       "subtitle_en": "Meanwhile, the tortoise kept going, without stopping and without hurrying, with steady, disciplined steps.",
       "seed": 106
     },
@@ -235,6 +241,7 @@
         "pan": "up",
         "prompt": "quick small push-in on the shocked face"
       },
+      "delivery": "[sudden surprise, then worried]",
       "narration": "ጥንቸል ከእንቅልፏ ስትነቃ ጊዜው በጣም ረፍዶ ነበር።",
       "subtitle_en": "When the rabbit woke up, it was already very late.",
       "seed": 107
@@ -258,6 +265,7 @@
         "pan": "center",
         "prompt": "slow push-in toward the finish line"
       },
+      "delivery": "[hushed, building suspense]",
       "narration": "ኤሊ የመጨረሻው መስመር አጠገብ ደርሳ ነበር።",
       "subtitle_en": "The tortoise was already near the finish line.",
       "seed": 108
@@ -267,7 +275,7 @@
       "beat": "Too late to win",
       "shot_size": "wide",
       "reason": "The climax: the rabbit's speed comes too late, and the tortoise crosses first.",
-      "duration_s": 7,
+      "duration_s": 6,
       "characters": [
         "rabbit",
         "tortoise"
@@ -282,6 +290,7 @@
         "pan": "center",
         "prompt": "the tortoise steps through the ribbon, the rabbit runs up the hill behind, fixed camera"
       },
+      "delivery": "[urgent, then warm and happy at the end]",
       "narration": "ጥንቸል በሙሉ ኃይሏ ብትሮጥም ቀድማ መድረስ አልቻለችም—ኤሊ ውድድሩን አሸነፈች።",
       "subtitle_en": "The rabbit ran with all her strength, but she could not get there first. The tortoise won the race.",
       "seed": 109
@@ -306,7 +315,8 @@
         "pan": "center",
         "prompt": "slow pull-back to a wide sunset"
       },
-      "narration": "ፍጥነት ብቻ በቂ አይደለም፤ ቀጣይነት ያለው ዲሲፕሊን፣ ትዕግሥት እና ትኩረት ለስኬት ያበቃል።",
+      "delivery": "[slow, warm and wise, gentle emphasis]",
+      "narration": "ፍጥነት ብቻ በቂ አይደለም፤ ቀጣይነት ያለው ትጋት፣ ትዕግሥት እና ትኩረት ለስኬት ያበቃል።",
       "subtitle_en": "Speed alone is not enough. Steady discipline, patience and focus lead to success.",
       "seed": 110
     }
@@ -318,5 +328,9 @@
       "A family story retold in Amharic"
     ],
     "duration_s": 4
+  },
+  "timing": {
+    "lead_s": 0.3,
+    "pad_after_s": 0.7
   }
 }

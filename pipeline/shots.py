@@ -19,7 +19,7 @@ from common import (OUT, ROOT, code_version, input_hash, load_storyboard, log_ca
 
 FPS = 24
 SIZE = 1024  # square master; assembly crops it to 16:9 and 9:16
-PAD_AFTER_NARRATION = 1.0
+PAD_AFTER_NARRATION = 1.0   # default; storyboard timing.pad_after_s overrides
 
 
 def kenburns(src: Path, dst: Path, dur: float, zoom: list[float], pan: str) -> None:
@@ -62,7 +62,8 @@ def main() -> int:
     for shot in sb["shots"]:
         sid = shot["id"]
         key = ROOT / keys[sid]
-        dur = round(max(shot["duration_s"], narr[sid]["duration_s"] + PAD_AFTER_NARRATION), 2)
+        pad = sb.get("timing", {}).get("pad_after_s", PAD_AFTER_NARRATION)
+        dur = round(max(shot["duration_s"], narr[sid]["duration_s"] + pad), 2)
         mode = shot["motion"]["mode"]
         wan_src = None
         if mode == "wan":
