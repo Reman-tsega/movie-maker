@@ -4,8 +4,10 @@
     python pipeline/film.py --radio    # = make radio
 A failing stage or validator stops the run with a non-zero exit code.
 """
+import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -20,6 +22,7 @@ def step(args: list[str], allow_fail: bool = False) -> None:
 
 
 def main() -> None:
+    os.environ["MM_RUN_ID"] = time.strftime("%Y%m%dT%H%M%S")   # every log line of this run carries it
     radio = "--radio" in sys.argv
     step(["validate.py"]); step(["validators.py", "storyboard"])
     step(["narration.py"]); step(["narration_check.py"], allow_fail=True); step(["validators.py", "narration"])

@@ -82,6 +82,7 @@ def log_call(stage: str, model: str, *, shot: str | None = None, params: dict | 
         "seed": seed, "latency_s": round(latency_s, 3), "gpu_s": round(gpu_s, 1),
         "cost_usd_list_equiv": cost_usd, "cache_hit": cache_hit, "status": status,
         "output": output, "error": error,
+        "run": os.environ.get("MM_RUN_ID"),     # set by film.py, groups one end-to-end run
     }
     with RUNS.open("a", encoding="utf-8") as f:
         f.write(json.dumps(rec, ensure_ascii=False) + "\n")
