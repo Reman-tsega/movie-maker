@@ -102,3 +102,12 @@ Format: what broke, what I tried, what fixed it.
   (`acestep/core/generation/handler/generate_music_execute.py`).
 - **Fixed:** timeout raised to 5400 s, and candidates generated **one at a time** (batch 1), each
   saved and logged as soon as it is done, so a slow or failed seed doesn't lose the others.
+
+## F12: The repo bundle reached 160 MB (26 Nov)
+- **Broke:** every rendered shot clip and final MP4 (≈ 10 MB each, many versions) was committed; the
+  bundle for my manual GitHub push hit 160 MB.
+- **Fixed:** a rule, not a one-off: **commit what costs an API or GPU call** (narration WAVs,
+  keyframes, the chosen score, `runs.jsonl`); **ignore what FFmpeg rebuilds exactly** (shot clips,
+  final renders). History rewritten, bundle now 36 MB. Rewriting the history deleted the local
+  renders again (like F7); `shots.py` and `assemble.py` rebuilt them from the cache in under a
+  minute, with no API calls, which shows the claim holds.
