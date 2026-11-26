@@ -128,3 +128,14 @@ Format: what broke, what I tried, what fixed it.
   checks that fail the build if it happens again (EXPERIMENTS E18).
 - **Lesson:** "the same API" changed its response format between model versions. Check the bytes,
   not the docs.
+
+## F14: Cloudflare's safety filter flagged a harmless image (26 Nov, on my Windows PC)
+- **Broke:** during the walkthrough rehearsal, `smoke_test.py` with the prompt "a small grey-brown rabbit
+  on a green hill, picture-book style" returned HTTP 400, code 3030: "Your output has been flagged.
+  Please choose another prompt / input image combination."
+- **Diagnosis:** a 400 with a content code, not a 401/403, so the new API token works. The filter
+  judged the *generated image*, not the prompt. Seeds aren't reproducible on this endpoint (E3), so
+  every call draws a new image.
+- **Fixed:** code 3030 is now `Retryable` in `keyframes.generate()`: up to 3 attempts with backoff,
+  each a fresh draw. Any other 400 still fails fast. A safety-filter false positive can no longer
+  stop the pipeline (or a live demo).

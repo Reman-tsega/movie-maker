@@ -45,6 +45,11 @@ def generate(model: str, prompt: str, seed: int, steps: int = 4, refs: list | No
                 r = requests.post(url, headers=headers, timeout=120, json={"prompt": prompt, "steps": steps})
         except requests.RequestException as e:
             raise Retryable(str(e))
+        # code 3030 = Cloudflare's safety filter flagged the *output*. It happened on a harmless
+        # "rabbit on a green hill" prompt; seeds aren't reproducible there, so a retry draws a
+        # different image and usually passes (FAILURES F14)
+        if r.status_code == 400 and '"code":3030' in r.text.replace(" ", ""):
+            raise Retryable("output flagged by safety filter (3030), retrying for a new draw")
         check_http(r)
         data = r.json()
         if not data.get("success", True) or "image" not in (data.get("result") or {}):
