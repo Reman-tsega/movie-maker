@@ -1,62 +1,62 @@
 {
   "s01": {
-    "file": "outputs/shots/s01_8baa868dfb14.mp4",
-    "duration_s": 6,
+    "file": "outputs/shots/s01_994cbb487cfa.mp4",
+    "duration_s": 5.95,
     "mode": "kenburns",
-    "check_s": 6.0
+    "check_s": 5.96
   },
   "s02": {
-    "file": "outputs/shots/s02_9753ffb98cb3.mp4",
+    "file": "outputs/shots/s02_5a607b3792a5.mp4",
     "duration_s": 5,
     "mode": "kenburns",
     "check_s": 5.0
   },
   "s03": {
-    "file": "outputs/shots/s03_6c597dea6470.mp4",
-    "duration_s": 5.78,
+    "file": "outputs/shots/s03_034e883f5860.mp4",
+    "duration_s": 5.2,
     "mode": "kenburns",
-    "check_s": 5.79
+    "check_s": 5.21
   },
   "s04": {
-    "file": "outputs/shots/s04_b360b2039f60.mp4",
-    "duration_s": 5.66,
+    "file": "outputs/shots/s04_31ae4b7a6a3d.mp4",
+    "duration_s": 5.74,
     "mode": "kenburns",
-    "check_s": 5.67
+    "check_s": 5.75
   },
   "s05": {
-    "file": "outputs/shots/s05_75bcddccb0b7.mp4",
-    "duration_s": 7.08,
+    "file": "outputs/shots/s05_26da3c4a3215.mp4",
+    "duration_s": 10.59,
     "mode": "kenburns",
-    "check_s": 7.08
+    "check_s": 10.58
   },
   "s06": {
-    "file": "outputs/shots/s06_80dd4f3f883f.mp4",
-    "duration_s": 8.05,
+    "file": "outputs/shots/s06_aef3ab5656fc.mp4",
+    "duration_s": 8.27,
     "mode": "kenburns",
-    "check_s": 8.04
+    "check_s": 8.25
   },
   "s07": {
-    "file": "outputs/shots/s07_83a63ceddbf6.mp4",
+    "file": "outputs/shots/s07_61e4af947170.mp4",
     "duration_s": 5,
     "mode": "kenburns",
     "check_s": 5.0
   },
   "s08": {
-    "file": "outputs/shots/s08_f7cf7c8a3075.mp4",
+    "file": "outputs/shots/s08_c5ae342d31e6.mp4",
     "duration_s": 5,
     "mode": "kenburns",
     "check_s": 5.0
   },
   "s09": {
-    "file": "outputs/shots/s09_545748702396.mp4",
-    "duration_s": 7.95,
+    "file": "outputs/shots/s09_583edd81482c.mp4",
+    "duration_s": 6.73,
     "mode": "kenburns",
-    "check_s": 7.96
+    "check_s": 6.75
   },
   "s10": {
-    "file": "outputs/shots/s10_9812ecba26fd.mp4",
-    "duration_s": 8,
+    "file": "outputs/shots/s10_51e56fc5ba40.mp4",
+    "duration_s": 9.64,
     "mode": "kenburns",
-    "check_s": 8.0
+    "check_s": 9.62
   }
 }
