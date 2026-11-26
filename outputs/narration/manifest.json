@@ -15,9 +15,9 @@
     "duration_s": 4.501
   },
   "s04": {
-    "file": "outputs/narration/s04_16416fd5c145.wav",
+    "file": "outputs/narration/s04_e5f5675f1423.wav",
     "model": "gemini-3.8-flash-tts",
-    "duration_s": 5.041
+    "duration_s": 4.661
   },
   "s05": {
     "file": "outputs/narration/s05_0ff0dfaa19f0.wav",

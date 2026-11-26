@@ -128,5 +128,14 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
   on `gemini-3.8-flash-tts`, then transcribed.
 - **Result:** transcript pure Amharic (tags not spoken); 5.21 s versus 4.66 s untagged, so the pause
   is honoured; tone described as "narrative and expressive, typical of a storyteller."
-- **Decision:** a `delivery` field on every shot, plus inline `[short pause]` where needed. Practice
-  note: short bracket tags work where a sentence-long instruction failed (E7).
+- **Decision:** a `delivery` field on every shot (applied to all 10 lines only after this one-line test
+  passed). Practice note: short bracket tags work where a sentence-long instruction failed (E7).
+- **Regression found by ear:** on the full run, s04 with `[short pause]` inside the sentence dropped
+  a syllable (በመኩራራት → በመኩራት; the transcription check also showed it, but marked it OK).
+  s04 went back to no tags; its earlier recording was a cache hit. Lesson: inline tags *inside* a
+  word group can distort it, so keep tags at the start of a line.
+
+## Not done (time): ElevenLabs Eleven v4 for Amharic
+- Suggested by Bilkis in user test 1 as better at Amharic than other models. Not tested before the
+  deadline: it needs a new account, key and API host. The comparison would reuse `tts_compare.py`
+  on the same three ejective lines (s01–s03), blind-rated by a native speaker as in E11.
