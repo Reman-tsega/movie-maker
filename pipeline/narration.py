@@ -15,7 +15,7 @@ from pathlib import Path
 
 import requests
 
-from common import (OUT, Retryable, check_http, input_hash, load_env, load_storyboard,
+from common import (OUT, Retryable, tts_cost, check_http, input_hash, load_env, load_storyboard,
                     log_call, media_duration, with_retries, write_manifest)
 
 API = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
@@ -217,6 +217,7 @@ def main() -> int:
             path = out_dir / f"{shot['id']}_{input_hash(used, voice, style, spoken(shot))}.wav"
             save_audio(path, pcm)
             log_call("narration", used, shot=shot["id"], latency_s=time.time() - t0,
+                     cost_usd=tts_cost(media_duration(path)),
                      status="ok" if used == models[0] else "fallback",
                      params={"voice": voice, "chars": len(shot["narration"])},
                      output=str(path.relative_to(OUT.parent)))

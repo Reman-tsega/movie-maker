@@ -1,5 +1,29 @@
 # Experiments
 
+19 entries. Each has a hypothesis, the change, a measured result and the decision it led to. Seeds are fixed where the model honours them (it doesn't on Cloudflare FLUX, see E3); comparisons change one thing at a time.
+
+| # | Question tested | Planned? |
+|---|---|---|
+| E1 | Code version in the cache key | reaction to a failure |
+| E2 | Vertical subtitle size | planned |
+| E3 | Is a fixed seed reproducible on Cloudflare FLUX.2 klein? | planned |
+| E4 | Does a reference image keep the character the same? | planned |
+| E5 | Multi-pose reference sheets leak into the shots | planned |
+| E6 | Fix only the shots that are wrong | planned |
+| E7 | How to give the TTS a style without it being read aloud | planned |
+| E8 | One TTS request for the whole script | planned |
+| E9 | Automatic transcription as a narration check | planned |
+| E10 | Is the narration check itself reliable? | reaction to a failure |
+| E11 | Which TTS model pronounces Amharic ejectives best? (in progress) | planned |
+| E12 | Two characters in a vertical frame | planned |
+| E13 | Choosing the score from three ACE-Step candidates | planned |
+| E14 | Bracketed delivery tags (from user test 1) | planned |
+| E15 | Hitting −14 LUFS without peaks over −1 dB | planned |
+| E16 | Smoother camera and softer cuts (from user test 2) | planned |
+| E17 | s09, "make the turtle look extra happy when she wins" (a 9-year-old's request) | planned |
+| E18 | Validators after every stage | planned |
+| E19 | Storyboard reflects what actually ran | reaction to a failure |
+
 Format: **hypothesis → change → result → decision.** Seeds are fixed unless the change is the seed.
 
 ## E1: Code version in the cache key

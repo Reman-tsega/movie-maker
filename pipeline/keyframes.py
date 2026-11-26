@@ -18,7 +18,7 @@ from pathlib import Path
 
 import requests
 
-from common import (OUT, Retryable, check_http, input_hash, load_env, load_storyboard,
+from common import (OUT, Retryable, flux_cost, check_http, input_hash, load_env, load_storyboard,
                     log_call, read_manifest, run, with_retries, write_manifest)
 
 CF = "https://api.cloudflare.com/client/v4/accounts/{acct}/ai/run/{model}"
@@ -94,6 +94,7 @@ def make(stage_dir, key: str, model: str, prompt: str, seed: int, log_shot: str,
         raise
     path.write_bytes(img)
     log_call("keyframes", model, shot=log_shot, seed=seed, latency_s=time.time() - t0,
+             cost_usd=flux_cost(len(ref_ids)) if "flux-2" in model else 0.0,
              params={"steps": 4, "prompt_chars": len(prompt), "refs": ref_ids}, output=rel)
     print(f"  {key}: generated in {time.time() - t0:.1f}s")
     return rel

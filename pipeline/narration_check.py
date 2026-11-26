@@ -9,7 +9,7 @@ import time
 
 import requests
 
-from common import OUT, load_env, load_storyboard, log_call, read_manifest
+from common import OUT, PRICE_GEMINI3_FLASH_AUDIO_IN, load_env, load_storyboard, log_call, read_manifest
 
 MODEL = "gemini-3-flash-preview"
 URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
@@ -30,7 +30,10 @@ def main() -> int:
     r = requests.post(URL, headers={"x-goog-api-key": os.environ.get("GEMINI_API_KEY", "")},
                       json={"contents": [{"parts": parts}]}, timeout=300)
     ok = r.ok
+    usage = r.json().get("usageMetadata", {}) if ok else {}
     log_call("narration_check", MODEL, latency_s=time.time() - t0, status="ok" if ok else "error",
+             params={"input_tokens": usage.get("promptTokenCount"), "output_tokens": usage.get("candidatesTokenCount")},
+             cost_usd=round((usage.get("promptTokenCount") or 0) * PRICE_GEMINI3_FLASH_AUDIO_IN, 6),
              error=None if ok else r.text[:300])
     if not ok:
         print(f"check failed: HTTP {r.status_code}")

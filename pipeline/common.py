@@ -31,6 +31,24 @@ SCHEMA = ROOT / "schema" / "storyboard.schema.json"
 OUT = ROOT / "outputs"
 RUNS = ROOT / "runs.jsonl"
 
+# List prices for the per-call cost logged in runs.jsonl (free tiers were used; this is the
+# paid-tier equivalent). Sources and dates in COSTS.md.
+PRICE_TTS_PER_AUDIO_TOKEN = 9.00 / 1e6        # Gemini 3.8 Flash TTS, $ per audio output token (to 31 Dec 2026)
+TTS_TOKENS_PER_SECOND = 25                     # audio is billed at 25 tokens per second
+PRICE_CF_PER_NEURON = 0.011 / 1000             # Cloudflare Workers AI
+FLUX2_KLEIN_NEURONS_OUT_TILE = 26.05           # per 512x512 output tile (1024^2 = 4 tiles)
+FLUX2_KLEIN_NEURONS_IN_TILE = 5.37             # per 512x512 input (reference) tile
+PRICE_GEMINI3_FLASH_AUDIO_IN = 1.00 / 1e6      # Gemini 3 Flash, $ per audio/text input token (input side only)
+
+
+def tts_cost(seconds: float) -> float:
+    return round(seconds * TTS_TOKENS_PER_SECOND * PRICE_TTS_PER_AUDIO_TOKEN, 6)
+
+
+def flux_cost(n_refs: int, out_tiles: int = 4) -> float:
+    neurons = out_tiles * FLUX2_KLEIN_NEURONS_OUT_TILE + n_refs * FLUX2_KLEIN_NEURONS_IN_TILE
+    return round(neurons * PRICE_CF_PER_NEURON, 6)
+
 
 def load_env() -> None:
     """Load KEY=VALUE pairs from .env into os.environ (no extra dependency)."""

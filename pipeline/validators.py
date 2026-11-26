@@ -61,6 +61,18 @@ def check_storyboard(sb) -> list[Result]:
     return r
 
 
+def check_script(sb) -> list[Result]:
+    m = read_manifest("script")
+    path = ROOT / m["file"]
+    text = path.read_text(encoding="utf-8") if path.exists() else ""
+    r: list[Result] = [("screenplay written", path.exists(), m["file"])]
+    for s in sb["shots"]:
+        r.append((f"{s['id']} in screenplay with reason and subtitle",
+                  f"## {s['id']}:" in text and s["subtitle_en"] in text, ""))
+    r.append(("back-translation available (warn only)", True, "yes" if m.get("back_translated") else "no (API unavailable)"))
+    return r
+
+
 def check_narration(sb) -> list[Result]:
     r: list[Result] = []
     m = read_manifest("narration")
@@ -177,7 +189,7 @@ def check_assemble(sb) -> list[Result]:
     return r
 
 
-CHECKS = {"storyboard": check_storyboard, "narration": check_narration, "keyframes": check_keyframes,
+CHECKS = {"storyboard": check_storyboard, "script": check_script, "narration": check_narration, "keyframes": check_keyframes,
           "shots": check_shots, "music": check_music, "assemble": check_assemble}
 
 

@@ -2,10 +2,10 @@ PY ?= python3
 P = $(PY) pipeline
 V = $(PY) pipeline/validators.py
 
-.PHONY: film radio validate smoke narration keyframes refs shots music assemble check setup clean-final
+.PHONY: film radio validate script smoke narration keyframes refs shots music assemble check setup clean-final
 
 ## make film: every stage, each followed by its validator (a FAIL stops the run)
-film: validate narration keyframes shots music assemble
+film: validate script narration keyframes shots music assemble
 
 ## make radio: narration + temp music on black, for the first user test
 radio: validate narration music
@@ -21,6 +21,10 @@ setup:
 validate:
 	$(P)/validate.py
 	$(V) storyboard
+
+script:
+	$(P)/script.py
+	$(V) script
 
 smoke:
 	$(P)/smoke_test.py

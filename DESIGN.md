@@ -22,6 +22,21 @@ woven tibeb shawl and a scarf in the flag colours makes a familiar fable feel li
   effort, not about shaming the rabbit.
 - **Narration sets the timing:** shots stretch to fit each spoken line.
 
+## Why every shot exists (from `storyboard.json`, field `reason`)
+
+| Shot | Beat | Size | Reason |
+|---|---|---|---|
+| s01 | Start of the race | wide | Establishes the place, the two characters and the race before anything happens. |
+| s02 | The rabbit is fast | medium | Shows the rabbit's speed, the strength that will later make her proud. |
+| s03 | Looking back | wide | The gap between them is the setup for the rabbit's mistake; children must see how far behind the tortoise is. |
+| s04 | Pride | close-up | A close-up on her proud face makes the moment of overconfidence clear to a child. |
+| s05 | The nap | medium | The turning point of the story: the decision to rest becomes a deep sleep. |
+| s06 | Steady steps | medium close-up | The heart of the lesson: the tortoise keeps going, step by step, without stopping. |
+| s07 | Waking up too late | medium close-up | The consequence of the rabbit's choice; the lower sun shows time has passed. |
+| s08 | Almost there | wide | Shows the tortoise near the finish so the ending is clear before it happens. |
+| s09 | Too late to win | wide | The climax: the rabbit's speed comes too late, and the tortoise crosses first. The tortoise visibly happy at the win (user test 2: a 9-year-old asked for it). |
+| s10 | The lesson | medium | Ends on calm and kindness, the two together, so the moral lands without shaming the rabbit. |
+
 ## Language review (before any audio was generated)
 - s05: "ላረፍ ብላ" corrected to "ልረፍ ብላ" (native-speaker read-through of all 10 lines).
 

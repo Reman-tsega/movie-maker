@@ -5,6 +5,7 @@
 ```
 storyboard.json ──(schema/storyboard.schema.json, validated before every stage)
       │
+      ├─ script.py      screenplay + Gemini back-translation     → outputs/script/
       ├─ narration.py   Gemini TTS, one WAV per shot            → outputs/narration/
       ├─ keyframes.py   FLUX (Cloudflare), refs then one/shot    → outputs/keyframes/
       ├─ shots.py       Wan clip (from Kaggle) or Ken Burns      → outputs/shots/
@@ -94,3 +95,15 @@ holds after it. 0.4 s crossfades keep the cut points (and the narration sync) un
 ## What is committed
 API and GPU outputs (narration WAVs with C2PA, keyframes, the chosen score, `runs.jsonl`) are
 committed; FFmpeg outputs (shot clips, final renders) are rebuilt exactly by `make film` (F12).
+
+## Script stage
+`script.py` turns the storyboard into a screenplay (`outputs/script/script_<hash>.md`): each shot's
+beat, reason, size, delivery, Amharic line, English subtitle, and a Gemini back-translation of the
+Amharic so subtitles can be checked against meaning. If the API call fails, the screenplay is
+still written and the error logged; this stage never blocks the film.
+
+## Cost per call
+`log_call()` records `cost_usd_list_equiv` for every model call: TTS from the audio length
+($9 / 1M audio tokens, 25 tokens/s), FLUX.2 klein from output and reference tiles
+($0.011 / 1k neurons), Gemini text from input tokens. Prices are constants in `common.py`, with
+sources in COSTS.md.

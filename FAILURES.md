@@ -1,5 +1,17 @@
 # Failures
 
+Format: what broke, what I tried, how it was resolved or worked around.
+
+### Tools that had moved, and what replaced them
+| Expected (brief or docs) | What I found | Replacement used |
+|---|---|---|
+| `huggingface-cli download` | "deprecated and no longer works" (F10) | `hf download` |
+| `pip install -e .` for ACE-Step on Kaggle | Kaggle image now Python 3.13; ACE-Step needs < 3.13 (F10) | `uv sync` (Python 3.12 venv), `uv run` |
+| `gemini-2.5-flash` for checks | 404 "no longer available to new users" (F4) | `gemini-3-flash-preview` |
+| FLUX.1 schnell with a seed | rejects `seed` (F5) | FLUX.2 klein 4B (multipart, reference images) |
+| Gemini TTS returning raw PCM (older models) | 3.8 returns a full WAV + C2PA (F13) | `save_audio()` writes WAVs as returned |
+| Wan 2.2 on a Kaggle T4 | needs ≥ 24 GB VRAM; T4 has 16 GB, and GPU queue 14+ h (F9, F15) | FFmpeg Ken Burns (eased) |
+
 Format: what broke, what I tried, what fixed it.
 
 ## F1: The cache did not notice code changes (25 Nov)
@@ -139,3 +151,18 @@ Format: what broke, what I tried, what fixed it.
 - **Fixed:** code 3030 is now `Retryable` in `keyframes.generate()`: up to 3 attempts with backoff,
   each a fresh draw. Any other 400 still fails fast. A safety-filter false positive can no longer
   stop the pipeline (or a live demo).
+
+## F15: Wan 2.2 TI2V-5B does not fit a Kaggle T4 (memory) (25–26 Nov)
+- **Found:** the Wan 2.2 README states the TI2V-5B command "can run on a GPU with at least 24GB VRAM"
+  with offloading; a Kaggle T4 has 16 GB.
+- **Tried:** wrote `kaggle/wan_shots.py` to try 1×T4 with `--offload_model --convert_model_dtype
+  --t5_cpu`, then 2×T4 with FSDP + Ulysses (`torchrun --nproc_per_node=2`). The GPU job never
+  left the queue (F9), so neither attempt ran.
+- **Workaround:** every shot is an eased Ken Burns move in FFmpeg (E16); the storyboard says
+  `kenburns` (E19). The Wan path stays in the code for when a GPU is available.
+
+## F16: The coding agent could not push to GitHub (25–26 Nov)
+- **Broke:** my GitHub account was not linked to the agent's environment, so `add_repo` and pushes
+  were refused, and the GitHub plugin could not connect through its network.
+- **Workaround:** the repo was sent as a `git bundle`; I cloned it on my PC and pushed myself
+  (`git pull ..\movie-maker.bundle main` then `git push`). The bundle hit 160 MB, which led to F12.

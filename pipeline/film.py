@@ -25,6 +25,7 @@ def main() -> None:
     os.environ["MM_RUN_ID"] = time.strftime("%Y%m%dT%H%M%S")   # every log line of this run carries it
     radio = "--radio" in sys.argv
     step(["validate.py"]); step(["validators.py", "storyboard"])
+    step(["script.py"]); step(["validators.py", "script"])
     step(["narration.py"]); step(["narration_check.py"], allow_fail=True); step(["validators.py", "narration"])
     if not radio:
         step(["keyframes.py"]); step(["validators.py", "keyframes"])
