@@ -23,14 +23,17 @@ def sh(cmd):
 sh("nvidia-smi --query-gpu=name,memory.total --format=csv")
 sh("python --version")
 if JOB == "music":
+    # Kaggle's image is Python 3.13; ACE-Step needs <3.13 -> uv builds a 3.12 venv (FAILURES F10)
+    sh("pip install -q uv")
     sh(f"cd {W} && git clone -q https://github.com/ACE-Step/ACE-Step-1.5.git")
-    sh(f"cd {W}/ACE-Step-1.5 && pip install -q -e . 2>&1 | tail -3")
-    sh(f"huggingface-cli download ACE-Step/Ace-Step1.5 --local-dir {W}/ACE-Step-1.5/checkpoints > /dev/null")
-    rc = sh(f"python {repo}/kaggle/ace_step_music.py {ARGS}")
+    sh(f"cd {W}/ACE-Step-1.5 && uv sync -q 2>&1 | tail -5")
+    # huggingface-cli was retired; the replacement is `hf`
+    sh(f"hf download ACE-Step/Ace-Step1.5 --local-dir {W}/ACE-Step-1.5/checkpoints > /dev/null")
+    rc = sh(f"cd {W}/ACE-Step-1.5 && uv run python {repo}/kaggle/ace_step_music.py {ARGS}")
 elif JOB == "wan":
     sh(f"cd {W} && git clone -q https://github.com/Wan-Video/Wan2.2.git")
     sh(f"cd {W}/Wan2.2 && grep -v flash_attn requirements.txt > req.txt && pip install -q -r req.txt 2>&1 | tail -3")
-    sh(f"huggingface-cli download Wan-AI/Wan2.2-TI2V-5B --local-dir {W}/Wan2.2-TI2V-5B > /dev/null")
+    sh(f"hf download Wan-AI/Wan2.2-TI2V-5B --local-dir {W}/Wan2.2-TI2V-5B > /dev/null")
     rc = sh(f"python {repo}/kaggle/wan_shots.py {ARGS}")
 # keep only the outputs in /kaggle/working so the download is small
 for d in ("ACE-Step-1.5", "Wan2.2", "Wan2.2-TI2V-5B"):

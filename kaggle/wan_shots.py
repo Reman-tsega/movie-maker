@@ -10,7 +10,7 @@ Notebook cells (GPU T4 x2, Internet on):
     !git clone https://github.com/Reman-tsega/movie-maker.git
     !git clone https://github.com/Wan-Video/Wan2.2.git
     !cd Wan2.2 && pip install -q -r requirements.txt   # flash_attn is optional; skip it if it fails
-    !huggingface-cli download Wan-AI/Wan2.2-TI2V-5B --local-dir /kaggle/working/Wan2.2-TI2V-5B
+    !hf download Wan-AI/Wan2.2-TI2V-5B --local-dir /kaggle/working/Wan2.2-TI2V-5B
     !python movie-maker/kaggle/wan_shots.py --frames 73 --steps 30
     # or one shot only:  --only s05
 

@@ -81,3 +81,15 @@ Format: what broke, what I tried, what fixed it.
 - **Tried:** checked status, dataset readiness and kernel list.
 - **Next:** start the same kernel from the Kaggle web UI with the accelerator set to "GPU T4 x2".
   The brief is right that GPU queueing, not money, is the binding constraint.
+
+## F10: The Kaggle CPU fallback failed on Python 3.13 and a retired CLI (26 Nov)
+- **Context:** the GPU job was still `QUEUED` after about 14 hours (F9), so I pushed the same job as a
+  **CPU** kernel. It started within a minute: the queue was the only blocker.
+- **Broke (two ways, from the kernel log):** (1) Kaggle's image is now **Python 3.13.18**, and
+  `pip install -e .` refused, with "Package 'ace-step' requires a different Python: 3.13.18 not
+  in '<3.13,>=3.11'", so `import acestep` then failed on a missing `loguru`. (2) `huggingface-cli` "is
+  deprecated and no longer works. Use `hf` instead."
+- **Fixed:** the runner installs `uv` and runs `uv sync`, which builds a Python 3.12 environment as
+  ACE-Step's docs recommend, then `uv run python ...`; downloads use `hf download`.
+- **Lesson:** the brief warned that tools move faster than the instructions. Two of the commands
+  I wrote two days ago from the official READMEs were already broken.

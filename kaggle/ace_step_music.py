@@ -5,7 +5,7 @@ Run in a Kaggle notebook with GPU + Internet on, one cell each:
     !git clone https://github.com/Reman-tsega/movie-maker.git
     !git clone https://github.com/ACE-Step/ACE-Step-1.5.git
     !cd ACE-Step-1.5 && pip install -q -e .
-    !huggingface-cli download ACE-Step/Ace-Step1.5 --local-dir /kaggle/working/ACE-Step-1.5/checkpoints
+    !hf download ACE-Step/Ace-Step1.5 --local-dir /kaggle/working/ACE-Step-1.5/checkpoints
     !python movie-maker/kaggle/ace_step_music.py --seeds 11,22,33 --duration 75
 
 Then download movie-maker/outputs/music/ (the WAVs and runs_kaggle.jsonl) and copy them into the
@@ -33,6 +33,7 @@ def main() -> int:
     ap.add_argument("--seeds", default="11,22,33")
     ap.add_argument("--duration", type=float, default=75)
     ap.add_argument("--backend", default="pt", help="pt (safe on T4) or vllm")
+    ap.add_argument("--device", default="cuda", help="cuda, or cpu when no GPU is free (F9)")
     args = ap.parse_args()
     seeds = [int(s) for s in args.seeds.split(",")]
 
@@ -49,10 +50,10 @@ def main() -> int:
 
     t0 = time.time()
     dit = AceStepHandler()
-    dit.initialize_service(project_root=str(ACE), config_path="acestep-v15-turbo", device="cuda")
+    dit.initialize_service(project_root=str(ACE), config_path="acestep-v15-turbo", device=args.device)
     llm = LLMHandler()
     llm.initialize(checkpoint_dir=str(ACE / "checkpoints"), lm_model_path="acestep-5Hz-lm-0.6B",
-                   backend=args.backend, device="cuda")
+                   backend=args.backend, device=args.device)
     load_s = time.time() - t0
     print(f"models loaded in {load_s:.0f}s")
 
@@ -65,7 +66,7 @@ def main() -> int:
     result = generate_music(dit, llm, params, config, save_dir=str(out / "raw"))
     gen_s = time.time() - t1
     rec_base = {"ts": time.strftime("%Y-%m-%dT%H:%M:%S%z"), "stage": "music", "shot": None,
-                "model": "ACE-Step-1.5 acestep-v15-turbo", "cost_usd_list_equiv": 0.0,
+                "model": f"ACE-Step-1.5 acestep-v15-turbo ({args.device})", "cost_usd_list_equiv": 0.0,
                 "cache_hit": False}
     with log.open("a", encoding="utf-8") as f:
         if not result.success:
@@ -82,7 +83,7 @@ def main() -> int:
                                            "key": m.get("key"), "duration_s": args.duration,
                                            "batch": len(seeds), "model_load_s": round(load_s, 1)},
                                 "latency_s": round(gen_s / len(seeds), 1),
-                                "gpu_s": round(gen_s / len(seeds), 1),
+                                "gpu_s": round(gen_s / len(seeds), 1) if args.device == "cuda" else 0.0,
                                 "output": str(dst.relative_to(REPO))}, ensure_ascii=False) + "\n")
             print(f"seed {seed} -> {dst.relative_to(REPO)}")
     print(f"{len(result.audios)} candidates in {gen_s:.0f}s (GPU)")
