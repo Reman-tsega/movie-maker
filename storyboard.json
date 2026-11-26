@@ -112,7 +112,7 @@
       ],
       "image_prompt": "the rabbit sprinting along the dirt trail, ears flying back, dust puffs behind her paws, motion lines",
       "motion": {
-        "mode": "wan",
+        "mode": "kenburns",
         "zoom": [
           1.0,
           1.25
@@ -184,7 +184,7 @@
       ],
       "image_prompt": "the rabbit curled up asleep in the cool shade under a large acacia tree beside the trail, eyes closed, peaceful, the whole frame fully painted edge to edge with grass and hills, no blank or white areas",
       "motion": {
-        "mode": "wan",
+        "mode": "kenburns",
         "zoom": [
           1.0,
           1.1
@@ -208,7 +208,7 @@
       ],
       "image_prompt": "the tortoise walking steadily along the dirt trail, one foot forward, calm determined face, low angle near the ground",
       "motion": {
-        "mode": "wan",
+        "mode": "kenburns",
         "zoom": [
           1.0,
           1.08
@@ -281,7 +281,7 @@
       ],
       "image_prompt": "the tortoise breaking through a red ribbon finish line stretched between two wooden posts on the hilltop, the ribbon across her chest, mouth open in a huge joyful smile, eyes closed with happiness, while the small rabbit runs up the hill far behind her, golden light",
       "motion": {
-        "mode": "wan",
+        "mode": "kenburns",
         "zoom": [
           1.0,
           1.08

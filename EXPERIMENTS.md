@@ -192,3 +192,9 @@ Format: **hypothesis → change → result → decision.** Seeds are fixed unles
   file the old way (the F13 bug) in a scratch copy → `validate narration: 69/71`, the two F13 checks
   FAIL, exit code 1, and the pipeline stops.
 - **Decision:** keep; every new failure should add a check.
+
+## E19: Storyboard reflects what actually ran
+- s02, s05, s06 and s09 were planned as Wan 2.2 shots. No GPU slot ever started (F9), so they always
+  fell back to Ken Burns and logged a `fallback` line on every run. They are now `kenburns` in the
+  storyboard, so the contract matches the film. `motion.mode = "wan"` is still supported: drop a
+  clip from `kaggle/wan_shots.py` into `outputs/wan/` and set the mode back.

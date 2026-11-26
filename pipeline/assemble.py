@@ -22,7 +22,8 @@ from common import (OUT, ROOT, code_version, input_hash, load_storyboard, log_ca
 FPS = 24
 LEAD = 0.4
 PAD_AFTER_NARRATION = 1.0   # default; storyboard timing.pad_after_s overrides
-FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+FONT_DIR = ROOT / "assets" / "fonts"          # bundled, so the render is the same on every OS
+FONT = (FONT_DIR / "DejaVuSans.ttf").as_posix()
 ASPECTS = {"16x9": (1280, 720), "9x16": (720, 1280)}
 XF = 0.4  # crossfade between shots (user test 2: cuts felt "abrupt")
 
@@ -109,7 +110,7 @@ def end_card_inputs(sb, w, h, tmp: Path):
         for j, text in enumerate(wrapped):
             tf = tmp / f"endcard_{i}_{j}.txt"
             tf.write_text(text, encoding="utf-8")
-            draws.append(f"drawtext=fontfile={FONT}:textfile={tf}:fontcolor=white:fontsize={size}:"
+            draws.append(f"drawtext=fontfile='{FONT.replace(":", chr(92) + ":")}':textfile='{tf.as_posix().replace(":", chr(92) + ":")}':fontcolor=white:fontsize={size}:"
                          f"x=(w-text_w)/2:y={y + j * int(size * 1.3)}")
         y += bh + gap
     return ",".join(draws)
@@ -152,7 +153,8 @@ def build_video(sb, rows, total, shots, aspect, audio: Path, srt: Path, dst: Pat
     style = ("FontName=DejaVu Sans,FontSize={fs},PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,"
              "BorderStyle=1,Outline=2,Shadow=0,Alignment=2,MarginV={mv}").format(
         fs=8 if vertical else 18, mv=70 if vertical else 24)
-    f.append(f"[joined]subtitles={srt.name}:force_style='{style}',format=yuv420p[vout]")
+    fonts = FONT_DIR.as_posix().replace(":", chr(92) + ":")
+    f.append(f"[joined]subtitles={srt.name}:fontsdir='{fonts}':force_style='{style}',format=yuv420p[vout]")
     args += ["-i", str(audio)]
     audio_idx = 0 if radio else len(rows)
     args += ["-filter_complex", ";".join(f), "-map", "[vout]", "-map", f"{audio_idx}:a",

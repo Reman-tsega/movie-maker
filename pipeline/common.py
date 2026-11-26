@@ -12,10 +12,18 @@ import hashlib
 import json
 import os
 import subprocess
+import sys
 import time
 from pathlib import Path
 
 import jsonschema
+
+# Windows consoles default to a legacy code page and crash on Amharic output
+for _s in (sys.stdout, sys.stderr):
+    try:
+        _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:  # noqa: BLE001
+        pass
 
 ROOT = Path(__file__).resolve().parent.parent
 STORYBOARD = ROOT / "storyboard.json"

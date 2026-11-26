@@ -33,11 +33,20 @@ GPU stages (Wan 2.2 moving shots, ACE-Step score) run in a Kaggle notebook. See
 so `make film` reproduces the film without a GPU. Shots without a Wan clip fall back to a
 Ken Burns move automatically.
 
+### Windows (no `make`)
+
+```powershell
+winget install Gyan.FFmpeg            # then reopen the terminal
+pip install -r requirements.txt
+copy .env.example .env                # add your keys
+python pipeline/film.py               # = make film (stages + validators + last-run summary)
+```
+
 ## Change one shot
 
 Edit a shot's `narration`, `image_prompt` or `motion` in `storyboard.json` and run `make film`.
-Each stage hashes its inputs, so only that shot is regenerated. Check `runs.jsonl`: every
-other shot logs `"cache_hit": true`.
+Each stage hashes its inputs, so only that shot is regenerated. Check `runs.jsonl`, or run `python pipeline/last_run.py`, which lists the regenerated shots and
+the cache hits.
 
 ## What it costs
 

@@ -6,7 +6,7 @@
     "check_s": 5.79
   },
   "s02": {
-    "file": "outputs/shots/s02_8cdf1935bda1.mp4",
+    "file": "outputs/shots/s02_48a8f1449c9c.mp4",
     "duration_s": 5,
     "mode": "kenburns",
     "check_s": 5.0
@@ -24,13 +24,13 @@
     "check_s": 5.21
   },
   "s05": {
-    "file": "outputs/shots/s05_ebbefcb4d880.mp4",
+    "file": "outputs/shots/s05_5689e3f57e29.mp4",
     "duration_s": 10.43,
     "mode": "kenburns",
     "check_s": 10.42
   },
   "s06": {
-    "file": "outputs/shots/s06_0835545ccdb0.mp4",
+    "file": "outputs/shots/s06_b4e286ee2cd7.mp4",
     "duration_s": 8.11,
     "mode": "kenburns",
     "check_s": 8.12
@@ -48,7 +48,7 @@
     "check_s": 5.0
   },
   "s09": {
-    "file": "outputs/shots/s09_ce99706385d9.mp4",
+    "file": "outputs/shots/s09_abb039e78f21.mp4",
     "duration_s": 6.57,
     "mode": "kenburns",
     "check_s": 6.58
